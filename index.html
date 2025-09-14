@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bharath Ram — Product Portfolio</title>
+  <meta name="description" content="Portfolio of Bharath Ram — product management aspirations, case studies, PRDs and work samples." />
+
+  <!-- External CSS link -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="site">
+    <header>
+      <div class="brand">
+        <div class="logo">BR</div>
+        <div>
+          <div style="font-weight:800">Bharath Ram</div>
+          <div class="muted" style="font-size:13px">Product-minded technical writer → aspiring PM</div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#prds">PRDs</a>
+        <a href="#contact">Contact</a>
+        <a href="/resume.pdf" target="_blank">Resume</a>
+      </nav>
+
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <div>
+          <h1>Hello — I'm Bharath. I design clarity in product writing and aspire to build product-led solutions.</h1>
+          <p>I’m transitioning from technical content & solutions consulting into product management. I focus on user empathy, data-informed decisions, clear PRDs, and measurable outcomes.</p>
+
+          <div class="ctas">
+            <a class="btn primary" href="#work">See my work</a>
+            <a class="btn" href="#prds">View PRDs</a>
+          </div>
+
+          <div style="margin-top:18px;color:var(--muted);font-size:14px">
+            Quick facts: <span class="tag">IIT Guwahati EP — Aug 2025</span> <span class="tag">Product Mindset daily</span>
+          </div>
+        </div>
+
+        <aside class="profile-card">
+          <div class="meta">
+            <div class="avatar">BR</div>
+            <div>
+              <div style="font-weight:800">Bharath Ram</div>
+              <div class="roles">Senior Technical Writer • Aspiring Product Manager</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;color:var(--muted);font-size:14px">
+            I write clear docs, craft PRDs, and map research to product decisions. Below are select projects and sample PRDs. Replace the links with your real files or GitHub URLs.
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <a class="btn" href="#contact">Hire / Connect</a>
+            <a class="btn" href="https://github.com/your-username" target="_blank">GitHub</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="work">
+        <div class="section-title">
+          <h2 style="margin:0">Selected work</h2>
+          <div class="muted">Case studies & product artefacts</div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Snabbit — Home Services app (assignment)</h3>
+            <p class="muted">Research-driven micro-mobility of home-service bookings; includes survey-backed pain points and product plan.</p>
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <a class="tag" href="#prds">Link to PRD</a>
+              <a class="tag" href="#contact">Case study</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Proficy docs modernization</h3>
+            <p class="muted">Docs improvement project — searchability, onboarding flows, and API examples.</p>
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <a class="tag" href="#prds">PRD</a>
+              <a class="tag" href="#contact">Artifacts</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Prompt engineering guide</h3>
+            <p class="muted">A 7-day structured guide and downloadable PDF for learning prompt design.</p>
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <a class="tag" href="#prds">Guide</a>
+              <a class="tag" href="#contact">Download</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="prds">
+        <div class="section-title" style="margin-top:6px">
+          <h2 style="margin:0">PRDs & Documents</h2>
+          <div class="muted">Click any item to open the hosted file</div>
+        </div>
+
+        <div class="prds">
+          <div class="prd-item"><div>
+            <strong>Snabbit — Product Plan</strong>
+            <div class="muted" style="font-size:13px">Landing page, UVP, core features, research → plan</div>
+          </div>
+          <div><a href="/prds/snabbit-product-plan.pdf" target="_blank">Open</a></div></div>
+
+          <div class="prd-item"><div>
+            <strong>Proficy Docs Modernization — PRD</strong>
+            <div class="muted" style="font-size:13px">Search, nav, analytics improvements</div>
+          </div>
+          <div><a href="/prds/proficy-docs-prd.pdf" target="_blank">Open</a></div></div>
+
+          <div class="prd-item"><div>
+            <strong>Prompt Engineering — 7-day Guide</strong>
+            <div class="muted" style="font-size:13px">Step-by-step exercises and examples</div>
+          </div>
+          <div><a href="/prds/prompt-engineering-guide.pdf" target="_blank">Open</a></div></div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="section-title">
+          <h2 style="margin:0">Contact</h2>
+          <div class="muted">Open to PM roles, collaborations, and contract work</div>
+        </div>
+
+        <div class="contact">
+          <div style="flex:1;min-width:200px">
+            <p class="muted">Email</p>
+            <div style="font-weight:700">bharath@example.com</div>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <p class="muted">Location</p>
+            <div style="font-weight:700">Bangalore, India</div>
+          </div>
+          <div style="flex:1;min-width:200px">
+            <p class="muted">Links</p>
+            <div style="font-weight:700"><a href="https://www.linkedin.com/in/your-profile" target="_blank">LinkedIn</a> • <a href="https://github.com/your-username" target="_blank">GitHub</a></div>
+          </div>
+        </div>
+
+      </section>
+
+      <footer>
+        Built with ❤️ • Save this file as <code>index.html</code> and push to a Git repository. Host on GitHub Pages, Netlify, or Vercel.
+      </footer>
+
+    </main>
+
+    <!-- Mobile menu (cloned content) -->
+    <div id="mobileMenu" style="display:none;margin-top:12px">
+      <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:12px;display:flex;flex-direction:column;gap:8px">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#prds">PRDs</a>
+        <a href="#contact">Contact</a>
+        <a href="/resume.pdf">Resume</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuBtn && menuBtn.addEventListener('click', ()=>{
+      const open = mobileMenu.style.display === 'block';
+      mobileMenu.style.display = open ? 'none' : 'block';
+      menuBtn.setAttribute('aria-expanded', (!open).toString());
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); if(mobileMenu.style.display==='block'){ mobileMenu.style.display='none'; menuBtn.setAttribute('aria-expanded','false') }}
+      })
+    })
+  </script>
+</body>
+</html>
