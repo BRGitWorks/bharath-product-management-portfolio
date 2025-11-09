@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Product Growth & Failure Case Studies — Bharath Ram</title>
+  <meta name="description" content="A comparative analysis of product growth and failure stories across industries — by Bharath Ram."/>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Header and layout */
+    .header-sticky {
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 24px;background:#fff;position:sticky;top:0;z-index:999;
+      border-bottom:1px solid rgba(0,0,0,.05);box-shadow:0 1px 2px rgba(0,0,0,.03);
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      background:#2563eb;color:#fff;font-weight:700;font-size:16px;
+      width:40px;height:40px;display:flex;align-items:center;justify-content:center;
+      border-radius:10px;box-shadow:0 2px 6px rgba(37,99,235,.2);
+    }
+    .home-link{
+      border:1.5px solid #2563eb;color:#2563eb;font-weight:600;
+      padding:8px 16px;border-radius:10px;text-decoration:none;
+      display:inline-flex;align-items:center;gap:6px;background:#fff;
+      transition:all .2s ease;white-space:nowrap;
+    }
+    .home-link:hover{background:#2563eb;color:#fff}
+    .home-link--header{display:inline-flex}
+    @media (max-width:768px){.home-link--header{display:none}}
+
+    /* Table wrapper (scroll fallback) */
+    .table-wrap{width:100%;overflow-x:auto;overflow-y:hidden;}
+    .table-wrap::-webkit-scrollbar{height:10px}
+    .table-wrap::-webkit-scrollbar-thumb{background:#e5e7eb;border-radius:999px}
+
+    /* Table styling (desktop) */
+    table { width:100%;border-collapse:collapse;margin-top:24px; }
+    th, td { border:1px solid #e5e7eb; text-align:left; padding:16px; vertical-align:top; }
+    th { background:#f8fafc; font-weight:700; color:#111827; }
+    tr:nth-child(even) td { background:#fafafa; }
+    .growth { border-left:4px solid #22c55e; }
+    .failure { border-left:4px solid #ef4444; }
+    .context { color:#475569; font-style:italic; margin-bottom:8px; display:block; }
+    .takeaway { margin-top:8px; font-size:14px; background:#f1f5ff; border-left:4px solid #2563eb; padding:8px 12px; border-radius:6px; }
+    .list-tight { margin:8px 0 0 0; padding-left:18px; }
+    .list-tight li { margin:4px 0; }
+    .pill { display:inline-block; font-size:12px; padding:2px 8px; border-radius:999px; background:#eef2ff; color:#3730a3; font-weight:600; margin-left:8px; }
+
+    /* Mobile responsive table → stacked cards */
+    @media (max-width: 720px){
+      .table-wrap{overflow:visible}
+      table, thead, tbody, th, tr { display:block; }
+      thead { /* hide the header row but keep for accessibility */ 
+        position:absolute; left:-9999px; top:-9999px; height:0; width:0; overflow:hidden;
+      }
+      tr {
+        margin:0 0 16px 0;
+        border:1px solid #e5e7eb;
+        border-radius:12px;
+        box-shadow:0 1px 2px rgba(0,0,0,.03);
+        overflow:hidden;
+      }
+      td {
+        display:block;
+        border:none;
+        border-top:1px solid #e5e7eb;
+        padding:14px 16px 16px 16px;
+        background:#fff !important; /* neutralize zebra striping on cards */
+      }
+      td:first-child { border-top:none; }
+      /* Labels from data attributes */
+      td::before {
+        content: attr(data-label);
+        display:block;
+        font-weight:700;
+        color:#111827;
+        margin-bottom:6px;
+      }
+      /* Keep the colored borders as top accents */
+      .growth { border-left:none; border-top:4px solid #22c55e; }
+      .failure { border-left:none; border-top:4px solid #ef4444; }
+    }
+
+    /* Print: keep classic table */
+    @media print{
+      .home-link, .home-link--header{display:none !important}
+      .table-wrap{overflow:visible}
+      table, thead, tbody, th, tr, td { display:table; }
+      thead{position:static;height:auto;width:auto}
+      tr{box-shadow:none;border:none;border-radius:0}
+      td{border:1px solid #e5e7eb;padding:10px}
+      td::before{content:"";display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="site">
+    <!-- Header -->
+    <header class="header-sticky">
+      <div class="brand">
+        <div class="logo">BR</div>
+        <div>
+          <div style="font-weight:800">Bharath Ram</div>
+          <div class="muted" style="font-size:13px">Product-minded technical writer → aspiring PM</div>
+        </div>
+      </div>
+      <!-- Desktop-only Home -->
+      <a href="index.html" class="home-link home-link--header" aria-label="Back to Home">← Home</a>
+    </header>
+
+    <main>
+      <article class="card" style="max-width:1050px;margin:24px auto;padding:28px;">
+        <header style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+          <div>
+            <h1>Product Growth & Failure Case Studies <span class="pill">Strategy View</span></h1>
+            <p class="muted">A cross-industry analysis of why some products compound growth while others stall — framed with acquisition, activation, retention, and moat design.</p>
+          </div>
+          <!-- Always-visible back to home (mobile + desktop) -->
+          <div class="ctas" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+            <a href="index.html" class="home-link">← Back to Home</a>
+          </div>
+        </header>
+
+        <!-- Quick framing -->
+        <div class="card" style="padding:12px;margin:12px 0 8px 0;">
+          <strong>How to read this:</strong>
+          <ul class="list-tight">
+            <li><em>Growth levers</em> = what systematically increased acquisition, activation, and retention.</li>
+            <li><em>Failure causes</em> = timing misses, weak incentives, poor UX focus, or platform shifts ignored.</li>
+            <li><em>PM takeaway</em> = a reusable principle for your roadmap and experiments.</li>
+          </ul>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>📈 Growth Story (Levers & Strategy)</th>
+                <th>📉 Failure Story (Causes & Misses)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Apple vs Motorola -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Apple iPhone</strong><br/>
+                  <span class="context">Design + ecosystem + silicon advantage → durable moat.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> App Store network effects, tight HW/SW integration, brand trust.</li>
+                    <li><strong>Activation:</strong> Opinionated defaults, minimal setup, continuity across devices.</li>
+                    <li><strong>Monetization:</strong> Premium pricing + services (iCloud, Music, Arcade).</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Build for ecosystem stickiness; compound value beyond the core device.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Motorola Smartphones</strong><br/>
+                  <span class="context">Hardware-led, slow software/ecosystem adaptation.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Fragmented Android strategy; weak services; low switching costs.</li>
+                    <li><strong>Moat risk:</strong> Commodity hardware eroded differentiation.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Without software + services, hardware advantages decay quickly.</div>
+                </td>
+              </tr>
+
+              <!-- Instagram vs Vine -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Instagram</strong><br/>
+                  <span class="context">Single “aha” action (share a beautiful photo fast) → creator flywheel.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Filters, social graph import, lightweight creation → frequency.</li>
+                    <li><strong>Distribution:</strong> FB acquisition → scale + better ads infra.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Perfect one irresistible habit loop before expanding surface area.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Vine</strong><br/>
+                  <span class="context">Pioneered short video but lagged on creator economics and ranking.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Limited monetization; slow product iteration; weak recommendations.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Creator incentive loops are non-optional for media platforms.</div>
+                </td>
+              </tr>
+
+              <!-- Zoom vs Skype -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Zoom</strong><br/>
+                  <span class="context">Reliability + low friction → default choice under load.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Join-without-account, stable calls, simple UI.</li>
+                    <li><strong>Expansion:</strong> Freemium → viral distribution across orgs.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Win critical jobs (speed, call success) over feature bloat.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Skype</strong><br/>
+                  <span class="context">Brand strong, UX drifted; integration complexity hurt core flows.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> UI bloat, reliability concerns, unclear JTBD prioritization.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Protect the core loop; avoid experience erosion.</div>
+                </td>
+              </tr>
+
+              <!-- Netflix vs Blockbuster -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Netflix</strong><br/>
+                  <span class="context">Bet on streaming + personalization before it was obvious.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Data-driven recommendations; original content; global distribution.</li>
+                    <li><strong>Moat:</strong> Habit + catalog + algorithms.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Anticipate platform shifts; invest ahead of the S-curve.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Blockbuster</strong><br/>
+                  <span class="context">Optimized for stores; under-weighted digital shift.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Cannibalization fear; slow decision cycles; late streaming pivot.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Incumbent cash cows can blind strategy; ring-fence to explore.</div>
+                </td>
+              </tr>
+
+              <!-- Samsung vs Nokia -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Samsung Galaxy</strong><br/>
+                  <span class="context">Rapid iteration + portfolio breadth → global share.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Segment coverage (entry → ultra-premium), local ops, marketing muscle.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Multi-segment fit unlocks distribution and resiliency.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Nokia Smartphones</strong><br/>
+                  <span class="context">Late platform shift; ecosystem misalignment.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Symbian inertia; slow Android embrace; app gap.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Developer ecosystems are the real OS.</div>
+                </td>
+              </tr>
+
+              <!-- YouTube vs Dailymotion -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>YouTube</strong><br/>
+                  <span class="context">Open upload + creator economy + discovery engine.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Monetization at scale; strong recsys; global CDNs.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Invest in creators and discovery → compounding supply & demand.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Dailymotion</strong><br/>
+                  <span class="context">Early, but weaker incentives and discovery limited scale.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Monetization gaps; limited distribution partnerships.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: “First” without network effects isn’t durable.</div>
+                </td>
+              </tr>
+
+              <!-- Slack vs HipChat -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Slack</strong><br/>
+                  <span class="context">Human UX + integrations → cultural adoption in teams.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> App directory, bots, delightful details; bottoms-up land & expand.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Emotional UX can be a B2B moat.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>HipChat</strong><br/>
+                  <span class="context">Solid start, but iteration + ecosystem lagged Slack.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Slower API ecosystem; less product velocity.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Tempo beats incumbency in collaboration tools.</div>
+                </td>
+              </tr>
+
+              <!-- Amazon vs eBay -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Amazon</strong><br/>
+                  <span class="context">Ops excellence + Prime + reinvestment flywheel (incl. AWS).</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Logistics moat; loyalty; data → better CX → more sellers → selection.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Operational innovation can power a product moat.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>eBay</strong><br/>
+                  <span class="context">Auction roots; struggled with retail-grade trust and UX.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Fraud, fragmented UX, slower pivot to fixed-price retail.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Trust & consistency define marketplace defensibility.</div>
+                </td>
+              </tr>
+
+              <!-- Google Search vs Yahoo -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Google Search</strong><br/>
+                  <span class="context">Precision + speed + relentless focus.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Ranking innovation; clean UI; data network effects.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Simplicity can be the disruption.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Yahoo</strong><br/>
+                  <span class="context">Diffused strategy across media/search/mail.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Identity dilution; misaligned acquisitions; unclear product north star.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Focus is a strategy, not a constraint.</div>
+                </td>
+              </tr>
+
+              <!-- Spotify vs Rdio -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Spotify</strong><br/>
+                  <span class="context">Freemium top of funnel + personalization moat.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Playlists, discovery; solid licensing; platform integrations.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Personalization drives retention more than pricing alone.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Rdio</strong><br/>
+                  <span class="context">Beloved design, weak business engine.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Late freemium; licensing disadvantages; smaller top of funnel.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Great UX needs an equally strong GTM + licensing strategy.</div>
+                </td>
+              </tr>
+
+              <!-- Tesla vs Faraday Future -->
+              <tr>
+                <td class="growth" data-label="📈 Growth">
+                  <strong>Tesla</strong><br/>
+                  <span class="context">Software-first EVs + OTA + vertical integration.</span>
+                  <ul class="list-tight">
+                    <li><strong>Levers:</strong> Brand aspiration; charging network; rapid iteration.</li>
+                  </ul>
+                  <div class="takeaway">🔑 PM Insight: Vision + shipping cadence compound into category leadership.</div>
+                </td>
+                <td class="failure" data-label="📉 Failure">
+                  <strong>Faraday Future</strong><br/>
+                  <span class="context">Ambition exceeded execution & capital discipline.</span>
+                  <ul class="list-tight">
+                    <li><strong>Misses:</strong> Manufacturing immaturity; credibility gap; delayed delivery.</li>
+                  </ul>
+                  <div class="takeaway">⚠️ PM Insight: Ops readiness is the moat in hardware.</div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <p class="footer-text">Built with clarity and curiosity — this portfolio reflects my journey from Technical Writing to Product Management.</p>
+      <p class="footer-text">© 2025 Bharath Ram. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>7‑Day Prompt Engineering Guide — Bharath Ram</title>
-  <meta name="description" content="A 1‑week, copy‑ready prompt engineering guide with detailed explanations, try‑it exercises, and templates." />
+  <title>7-Day Prompt Engineering Guide — Bharath Ram</title>
+  <meta name="description" content="A 1-week, copy-ready prompt engineering guide with detailed explanations, try-it exercises, and templates." />
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,8 @@
 </head>
 <body>
   <div class="site">
-    <!-- Header from site shell, with links pointing to index.html anchors -->
+
+    <!-- Minimal Header -->
     <header class="header-sticky">
       <div class="brand">
         <div class="logo">BR</div>
@@ -22,33 +23,26 @@
         </div>
       </div>
       <nav aria-label="Primary" class="nav-desktop">
-        <a href="index.html#about" class="nav-link">About</a>
-        <a href="index.html#portfolio" class="nav-link">Portfolio</a>
-        <a href="index.html#skills" class="nav-link">Skills</a>
-        <a href="index.html#testimonials" class="nav-link">Testimonials</a>
-	<a href="index.html#articles" class="nav-link">Articles</a>
-        <a href="index.html#contact" class="nav-link">Contact</a>
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" class="nav-link">Resume</a>
+        <a href="index.html" class="btn btn-outline" style="margin:4px 0;">← Home</a>
       </nav>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu">
-        <span class="menu-icon"><span></span><span></span><span></span></span>
-        <span class="menu-text">Menu</span>
-      </button>
     </header>
 
     <main>
+      <div id="top" aria-hidden="true"></div>
+
       <article class="card" style="max-width:1100px;margin:24px auto;padding:28px;">
         <header style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
           <div>
-            <h1>7‑Day Prompt Engineering Guide</h1>
-            <p class="muted">Copy‑ready templates, examples, and try‑it exercises. Built to match your portfolio theme.</p>
+            <h1>7-Day Prompt Engineering Guide</h1>
+            <p class="muted">Copy-ready templates, examples, and try-it exercises. Built to match your portfolio theme.</p>
           </div>
           <div class="ctas" style="display:flex;gap:8px;">
+            <a href="index.html" class="btn btn-outline">← Back to Home</a>
             <button id="printBtn" class="btn">Print / Save PDF</button>
           </div>
         </header>
 
-        <!-- On‑page TOC -->
+        <!-- On-page TOC -->
         <nav aria-label="On this page" class="card" style="padding:14px;margin:14px 0 22px 0;">
           <strong class="muted">On this page</strong>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px;margin-top:8px;">
@@ -59,7 +53,7 @@
             <a class="nav-link" href="#day5">Day 5 — Tools & Schemas</a>
             <a class="nav-link" href="#day6">Day 6 — Evaluation & Safety</a>
             <a class="nav-link" href="#day7">Day 7 — Workflows & Automation</a>
-            <a class="nav-link" href="#cheats">Cheat‑sheet</a>
+            <a class="nav-link" href="#cheats">Cheat-sheet</a>
             <a class="nav-link" href="#rubric">Quality rubric</a>
             <a class="nav-link" href="#fixes">Common fixes</a>
           </div>
@@ -68,13 +62,13 @@
         <!-- Day 1 -->
         <section id="day1" class="section-fade">
           <h2>Day 1 — Foundations</h2>
-          <p>Speak the model’s language using <strong>C‑R‑E‑A‑M</strong>: <em>Context</em>, <em>Role</em>, <em>Examples</em>, <em>Ask</em>, <em>Meta</em> constraints (tone, format, length).</p>
+          <p>Speak the model’s language using <strong>C-R-E-A-M</strong>: <em>Context</em>, <em>Role</em>, <em>Examples</em>, <em>Ask</em>, <em>Meta</em> constraints (tone, format, length).</p>
           <details class="card" open>
             <summary>Starter template</summary>
 <pre><button class="btn btn-small copy" data-copy="#d1t">Copy</button><code id="d1t">You are a &lt;role&gt; helping with &lt;domain&gt;.
 Context: &lt;concise background and audience&gt;.
 Task: &lt;what you must produce&gt;.
-Constraints: bullet list of must‑haves and must‑nots.
+Constraints: bullet list of must-haves and must-nots.
 Output format: &lt;JSON/markdown/table&gt;.
 Voice: &lt;tone&gt;.</code></pre>
           </details>
@@ -83,8 +77,8 @@ Voice: &lt;tone&gt;.</code></pre>
               <strong>Good</strong>
 <pre><button class="btn btn-small copy" data-copy="#d1g">Copy</button><code id="d1g">You are a senior technical writer.
 Context: Create a quickstart for a Windows desktop app.
-Task: Draft a 6‑step install guide for beginners.
-Constraints: 8th‑grade reading level, numbered steps, bold UI labels.
+Task: Draft a 6-step install guide for beginners.
+Constraints: 8th-grade reading level, numbered steps, bold UI labels.
 Output: Markdown with an H2 title and a tip box at the end.
 Voice: clear, friendly.</code></pre>
             </div>
@@ -95,7 +89,7 @@ Voice: clear, friendly.</code></pre>
           </div>
           <details class="card">
             <summary>Try it yourself</summary>
-            <p>Rewrite one of your recent prompts using C‑R‑E‑A‑M. Aim to cut ~30% words while adding explicit constraints. Paste your original and improved versions below your notes.</p>
+            <p>Rewrite one of your recent prompts using C-R-E-A-M. Aim to cut ~30% words while adding explicit constraints. Paste your original and improved versions below your notes.</p>
           </details>
         </section>
 
@@ -105,7 +99,7 @@ Voice: clear, friendly.</code></pre>
           <p>Master reusable blueprints: classification, extraction, rewrite, summarize, translate.</p>
           <details class="card" open>
             <summary>Classification</summary>
-<pre><button class="btn btn-small copy" data-copy="#d2c">Copy</button><code id="d2c">Task: Classify the text into one of {Bug, How‑to, Feedback}.
+<pre><button class="btn btn-small copy" data-copy="#d2c">Copy</button><code id="d2c">Task: Classify the text into one of {Bug, How-to, Feedback}.
 Output: {"label":"…","rationale":"1 sentence"}
 Text: &lt;paste&gt;</code></pre>
           </details>
@@ -121,7 +115,7 @@ Text: &lt;paste&gt;</code></pre>
           </details>
           <details class="card">
             <summary>Rewrite & improve</summary>
-<pre><button class="btn btn-small copy" data-copy="#d2r">Copy</button><code id="d2r">Rewrite the paragraph to 8th‑grade level. Keep meaning.
+<pre><button class="btn btn-small copy" data-copy="#d2r">Copy</button><code id="d2r">Rewrite the paragraph to 8th-grade level. Keep meaning.
 Constraints: active voice, max 120 words, bullets only if needed.
 Return: before/after table in Markdown.
 Text: &lt;paste&gt;</code></pre>
@@ -145,11 +139,11 @@ Text: &lt;paste&gt;</code></pre>
         <section id="day3" class="section-fade">
           <h2>Day 3 — Examples & Style Control</h2>
           <details class="card" open>
-            <summary>Few‑shot pattern</summary>
-<pre><button class="btn btn-small copy" data-copy="#d3f">Copy</button><code id="d3f">You are a release‑notes assistant.
+            <summary>Few-shot pattern</summary>
+<pre><button class="btn btn-small copy" data-copy="#d3f">Copy</button><code id="d3f">You are a release-notes assistant.
 Format: Markdown list, each item: "Change — Why it matters".
 Examples:
-Input: "Fixed login bug; users got 500 error" → Output: "Login fix — No more 500 errors during sign‑in."
+Input: "Fixed login bug; users got 500 error" → Output: "Login fix — No more 500 errors during sign-in."
 Input: "Added SSO" → Output: "SSO — Sign in with corporate identity; fewer passwords to manage."
 Now rewrite:
 &lt;your raw changes&gt;</code></pre>
@@ -178,7 +172,7 @@ Notes: &lt;paste&gt;</code></pre>
           <p>Get better answers by breaking work into steps and planning before writing.</p>
           <details class="card" open>
             <summary>Plan → Draft → Check loop</summary>
-<pre><button class="btn btn-small copy" data-copy="#d4p">Copy</button><code id="d4p">First, list a 3‑step plan for the task.
+<pre><button class="btn btn-small copy" data-copy="#d4p">Copy</button><code id="d4p">First, list a 3-step plan for the task.
 Then produce the draft.
 Finally, return a checklist of 5 verifications you ran.</code></pre>
           </details>
@@ -217,7 +211,7 @@ Exactly 6 rows.
 Fill N/A if unsure.</code></pre>
           </details>
           <details class="card">
-            <summary>Function‑call intent (pseudo)</summary>
+            <summary>Function-call intent (pseudo)</summary>
 <pre><button class="btn btn-small copy" data-copy="#d5f">Copy</button><code id="d5f">If you need data, propose a function call with name and arguments.
 Return JSON: {"call":{"name":"fetch_user","args":{"id":"123"}}}</code></pre>
           </details>
@@ -236,8 +230,8 @@ Produce outputs and a pass/fail table against these rules:
 - Must include constraints (length/tone/audience)</code></pre>
           </details>
           <details class="card">
-            <summary>Red‑team prompts</summary>
-<pre><button class="btn btn-small copy" data-copy="#d6r">Copy</button><code id="d6r">Stress‑test the prompt for: ambiguity, missing context, unsafe asks, proprietary data leakage.
+            <summary>Red-team prompts</summary>
+<pre><button class="btn btn-small copy" data-copy="#d6r">Copy</button><code id="d6r">Stress-test the prompt for: ambiguity, missing context, unsafe asks, proprietary data leakage.
 Return: a bullet list of issues and fixes.</code></pre>
           </details>
           <div class="card" style="padding:12px;">
@@ -256,7 +250,7 @@ Return: a bullet list of issues and fixes.</code></pre>
           <p>Turn good prompts into reusable systems.</p>
           <details class="card" open>
             <summary>Prompt to Playbook</summary>
-<pre><button class="btn btn-small copy" data-copy="#d7p">Copy</button><code id="d7p">Title: &lt;use‑case&gt;
+<pre><button class="btn btn-small copy" data-copy="#d7p">Copy</button><code id="d7p">Title: &lt;use-case&gt;
 Inputs: &lt;required fields&gt;
 System prompt: &lt;role+rules&gt;
 User prompt template: &lt;template with {{placeholders}}&gt;
@@ -264,7 +258,7 @@ Output shape: &lt;JSON/table/text&gt;
 Quality checks: &lt;list&gt;</code></pre>
           </details>
           <details class="card">
-            <summary>Multi‑turn pattern</summary>
+            <summary>Multi-turn pattern</summary>
 <pre><button class="btn btn-small copy" data-copy="#d7m">Copy</button><code id="d7m">Round 1: Collect requirements (goal, audience, data, format).
 Round 2: Propose outline/options.
 Round 3: Deliver draft.
@@ -273,7 +267,7 @@ Round 4: Review against rubric → final.</code></pre>
           <div class="card" style="padding:12px;">
             <h3>Versioning & notes</h3>
             <ul>
-              <li>Name prompts semantically: <em>csense‑install‑v3</em></li>
+              <li>Name prompts semantically: <em>csense-install-v3</em></li>
               <li>Keep a change log and test set.</li>
               <li>Pin constraints; vary examples when needed.</li>
             </ul>
@@ -282,7 +276,7 @@ Round 4: Review against rubric → final.</code></pre>
 
         <!-- Cheats / Rubric / Fixes -->
         <section id="cheats" class="section-fade">
-          <h2>Cheat‑sheet</h2>
+          <h2>Cheat-sheet</h2>
           <div class="grid-2" style="display:grid;gap:12px;grid-template-columns:1fr 1fr;">
             <div class="card" style="padding:12px;">
               <h3>Command verbs</h3>
@@ -322,7 +316,7 @@ Round 4: Review against rubric → final.</code></pre>
             <li>Waffly tone → Specify voice and audience.</li>
             <li>Unstructured output → Demand JSON/table.</li>
             <li>Model makes things up → Restrict to provided text or ask for sources.</li>
-            <li>Inconsistent results → Provide few‑shot examples.</li>
+            <li>Inconsistent results → Provide few-shot examples.</li>
           </ul>
           <p class="muted">Tip: Use the Print button above to export this page as a PDF.</p>
         </section>
@@ -334,20 +328,7 @@ Round 4: Review against rubric → final.</code></pre>
       </article>
     </main>
 
-    <!-- Mobile menu (for consistency with index.html) -->
-    <div id="mobileMenu" class="mobile-menu">
-      <div class="mobile-menu-content">
-        <a href="index.html#about" class="mobile-menu-link">About</a>
-        <a href="index.html#portfolio" class="mobile-menu-link">Portfolio</a>
-        <a href="index.html#skills" class="mobile-menu-link">Skills</a>
-        <a href="index.html#articles" class="mobile-menu-link">Articles</a>
-        <a href="index.html#testimonials" class="mobile-menu-link">Testimonials</a>
-        <a href="index.html#contact" class="mobile-menu-link">Contact</a>
-        <a href="/resume.pdf" class="mobile-menu-link">Resume</a>
-      </div>
-    </div>
-
-    <!-- Footer exactly as index.html -->
+    <!-- Footer -->
     <footer>
       <p class="footer-text">Built with clarity and curiosity — this portfolio reflects my journey from Technical Writing to Product Management.</p>
       <p class="footer-text">© 2025 Bharath Ram. All rights reserved.</p>
@@ -355,10 +336,10 @@ Round 4: Review against rubric → final.</code></pre>
   </div>
 
   <script>
-    // Print / Save PDF
+    // ===== Print / Save PDF =====
     (document.getElementById('printBtn')||{}).onclick = function(){ window.print(); };
 
-    // Copy buttons for code blocks
+    // ===== Copy buttons for code blocks =====
     function bindCopy(btn){
       btn.addEventListener('click', function(){
         var target = btn.getAttribute('data-copy');
@@ -373,7 +354,7 @@ Round 4: Review against rubric → final.</code></pre>
     }
     Array.prototype.forEach.call(document.querySelectorAll('.copy'), bindCopy);
 
-    // Copy entire page HTML
+    // ===== Copy entire page HTML =====
     var copyAllBtn = document.getElementById('copyAll');
     if(copyAllBtn){
       copyAllBtn.addEventListener('click', function(){
@@ -384,55 +365,37 @@ Round 4: Review against rubric → final.</code></pre>
         });
       });
     }
-      // Mobile Menu Toggle (copied behavior)
+
+    // ===== Smooth Scroll for On-page Anchors =====
     (function(){
-      var menuBtn = document.getElementById('menuBtn');
-      var mobileMenu = document.getElementById('mobileMenu');
-      if(menuBtn && mobileMenu){
-        menuBtn.addEventListener('click', function(){
-          var isOpen = mobileMenu.classList.contains('open');
-          mobileMenu.classList.toggle('open');
-          menuBtn.classList.toggle('active');
-          menuBtn.setAttribute('aria-expanded', (!isOpen).toString());
-          document.body.style.overflow = !isOpen ? 'hidden' : '';
+      var offset = 80;
+      document.querySelectorAll('a[href^="#"]').forEach(function(link){
+        link.addEventListener('click',function(e){
+          var href = link.getAttribute('href');
+          if(!href || href.charAt(0)!=='#') return;
+          var target=document.querySelector(href);
+          if(!target) return;
+          e.preventDefault();
+          var rect=target.getBoundingClientRect();
+          var top=Math.max(0,rect.top+window.pageYOffset-offset);
+          window.scrollTo({top:top,behavior:'smooth'});
         });
-        document.addEventListener('click', function(e){
-          if(!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)){
-            mobileMenu.classList.remove('open');
-            menuBtn.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-          }
-        });
-      }
+      });
     })();
 
-    // SECTION FADE VISIBILITY (fix so content shows)
+    // ===== Section Fade-In =====
     (function(){
-      var opts = {threshold:0.1, rootMargin:'0px 0px -50px 0px'};
-      var io = new IntersectionObserver(function(entries){
+      var io=new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
-          if(entry && entry.isIntersecting && entry.target && entry.target.classList){
-            entry.target.classList.add('visible');
-          }
+          if(entry.isIntersecting) entry.target.classList.add('visible');
         });
-      }, opts);
-
-      var sels = ['.section-fade'];
-      sels.forEach(function(sel){
-        try{
-          document.querySelectorAll(sel).forEach(function(el){
-            if(!el) return;
-            // If already in view on load, mark visible immediately
-            var rect = el.getBoundingClientRect();
-            if(rect.top < window.innerHeight){ el.classList.add('visible'); }
-            io.observe(el);
-          });
-        }catch(e){ /* noop */ }
+      },{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+      document.querySelectorAll('.section-fade').forEach(function(el){
+        var rect=el.getBoundingClientRect();
+        if(rect.top<window.innerHeight){el.classList.add('visible');}
+        io.observe(el);
       });
-
-      // mark body loaded for any CSS that uses it
-      window.addEventListener('load', function(){ document.body.classList.add('loaded'); });
+      window.addEventListener('load',function(){document.body.classList.add('loaded');});
     })();
   </script>
 </body>

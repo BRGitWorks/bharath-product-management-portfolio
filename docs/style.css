@@ -1676,3 +1676,13 @@ body.loaded .fade-in-delay {
     height: 32px;
   }
 }
+/* Prevent background scroll when menu is open */
+html.overflow-hidden { overflow: hidden; }
+
+/* Optional: fix body to avoid layout shift when open */
+body.menu-open { position: fixed; width: 100%; }
+
+/* Example visibility */
+#mobileMenu { visibility: hidden; opacity: 0; transition: opacity .2s ease, visibility .2s; }
+#mobileMenu.open { visibility: visible; opacity: 1; }
+

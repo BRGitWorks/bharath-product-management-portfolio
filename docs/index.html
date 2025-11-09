@@ -63,6 +63,19 @@
       </button>
     </header>
 
+    <!-- ===== Mobile Menu Added Here ===== -->
+    <nav id="mobileMenu" class="mobile-menu">
+      <div class="mobile-menu-content">
+        <a href="#about" class="mobile-menu-link">About</a>
+        <a href="#portfolio" class="mobile-menu-link">Portfolio</a>
+        <a href="#skills" class="mobile-menu-link">Skills</a>
+        <a href="#testimonials" class="mobile-menu-link">Testimonials</a>
+        <a href="#articles" class="mobile-menu-link">Articles</a>
+        <a href="#contact" class="mobile-menu-link">Contact</a>
+        <a href="Bharath_Ram_Resume.pdf" target="_blank" rel="noopener noreferrer" class="mobile-menu-link">Resume</a>
+      </div>
+    </nav>
+
     <main>
       <section class="hero" id="about">
         <div class="hero-content fade-in">
@@ -195,69 +208,111 @@
               </div>
             </article>
 
-            <article class="portfolio-card expandable-case-study">
-              <div class="portfolio-thumbnail">
-                <div class="thumbnail-placeholder">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+           <article class="portfolio-card expandable-case-study">
+  <div class="portfolio-thumbnail">
+    <div class="thumbnail-placeholder">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="portfolio-card-header">
+    <h3>Product Growth and Failure Case Study</h3>
+    <p class="portfolio-type">Product Growth Strategy</p>
+  </div>
+
+  <p class="portfolio-description">
+    A comparative growth study showing how winners compound value through acquisition, activation, and retention loops—while laggards stall on timing, incentives, and ecosystem fit. Translates cross-industry patterns into a reusable growth playbook.
+  </p>
+
+  <div class="case-study-details">
+    <div class="case-study-section">
+      <h4 class="case-study-label">Problem</h4>
+      <p>
+        Teams often chase features without a coherent growth model. As markets shift, products plateau:
+        sign-ups slow, first-week activation drops, and cohorts decay. The core issue isn’t “more features”—
+        it’s missing value loops that turn usage into durable growth.
+      </p>
+    </div>
+
+    <div class="case-study-section">
+      <h4 class="case-study-label">Research</h4>
+      <p>
+        Benchmarked 10+ pairs of successes vs. failures (e.g., Apple vs. Motorola, Netflix vs. Blockbuster, Instagram vs. Vine).
+        Analyzed lifecycle inflection points, incentives, switching costs, and ecosystem leverage. Complemented with 200-respondent survey
+        on first-use friction and reasons to churn/switch.
+      </p>
+    </div>
+
+    <div class="case-study-section">
+      <h4 class="case-study-label">Solution</h4>
+      <p>
+        Designed a 3-layer Growth System and playbook:
+      </p>
+      <ul>
+        <li><strong>Acquisition:</strong> Ecosystem distribution (partnerships/APIs), referral loops, clear UVP vs. incumbent jobs.</li>
+        <li><strong>Activation:</strong> Time-to-Value under 2 minutes; progressive onboarding; opinionated defaults; social proof.</li>
+        <li><strong>Retention & Expansion:</strong> Personalization, habit triggers, creator/user incentives, adjacent use cases, pricing fit.</li>
+      </ul>
+      <p>
+        Failure patterns were codified as guardrails: slow pivots to platform shifts (e.g., mobile touch UI), weak creator economics,
+        overcomplex UI, and misaligned monetization that taxes engagement.
+      </p>
+    </div>
+
+    <div class="case-study-section">
+      <h4 class="case-study-label">Impact</h4>
+      <p>
+        Applying the playbook in a pilot increased WAU by <strong>40%</strong> in 60 days and Month-1 retention by <strong>25%</strong>.
+        The dashboard tracked A1 (first session completion), A7 (7-day repeat), and % of users reaching the “aha” action in the first hour.
+        Experiments that moved the needle most: simplifying the first task path, adding one native integration, and clarifying pricing tiers.
+      </p>
+    </div>
+
+    <div class="case-study-section">
+      <h4 class="case-study-label">Learnings</h4>
+      <p>
+        Growth is a system, not a campaign. Winners compound value via ecosystem, incentives, and speed of iteration.
+        Align teams on one “aha” metric, test weekly, and design incentives so each action increases future usefulness.
+        When technology or behavior shifts, prioritize adaptation over feature parity.
+      </p>
+    </div>
+  </div>
+
+  <div class="portfolio-meta">
+    <span class="meta-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+      </svg>
+      Product Strategy
+    </span>
+    <span class="meta-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+      </svg>
+      Growth Framework
+    </span>
+  </div>
+
+  <div class="portfolio-actions">
+    <a href="product_growth_failure.html" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      Click here to learn
+       <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-label="Click here to learn more">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="10" x2="12" y2="16" />
+                    <circle cx="12" cy="7" r="0.8" />
+                    <polyline points="16 16 20 20 20 15" />
                   </svg>
-                </div>
-              </div>
-              <div class="portfolio-card-header">
-                <h3>TBD</h3>
-                <p class="portfolio-type">Documentation Strategy</p>
-              </div>
-              <p class="portfolio-description">Comprehensive documentation improvement initiative focusing on searchability, user onboarding flows, and enhanced API documentation with practical examples.</p>
-              
-              <div class="case-study-details">
-                <div class="case-study-section">
-                  <h4 class="case-study-label">Problem</h4>
-                  <p>Users struggled to find relevant documentation, leading to increased support tickets and longer onboarding times. Search functionality was inadequate and navigation confusing.</p>
-                </div>
-                <div class="case-study-section">
-                  <h4 class="case-study-label">Research</h4>
-                  <p>Analyzed support ticket data, conducted user surveys (150+ responses), and performed usability testing. Found 60% of users couldn't find needed information within 3 clicks.</p>
-                </div>
-                <div class="case-study-section">
-                  <h4 class="case-study-label">Solution</h4>
-                  <p>Redesigned information architecture, implemented improved search with filters, created contextual help, and added interactive API examples. Enhanced onboarding with guided tours.</p>
-                </div>
-                <div class="case-study-section">
-                  <h4 class="case-study-label">Impact</h4>
-                  <p>Achieved 35% reduction in support tickets, 50% faster onboarding time, and 80% improvement in user satisfaction scores for documentation usability.</p>
-                </div>
-                <div class="case-study-section">
-                  <h4 class="case-study-label">Learnings</h4>
-                  <p>Contextual help and search improvements had higher impact than content reorganization. Users value quick access over comprehensive coverage.</p>
-                </div>
-              </div>
-              
-              <div class="portfolio-meta">
-                <span class="meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
-                  </svg>
-                  Documentation
-                </span>
-                <span class="meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                  </svg>
-                  UX Strategy
-                </span>
-              </div>
-              <div class="portfolio-actions">
-                <a href="/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-                  View PRD
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
-                  </svg>
-                </a>
-                <button class="btn btn-ghost toggle-case-study">View Details</button>
-              </div>
-            </article>
+    </a>
+    <button class="btn btn-ghost toggle-case-study">View Details</button>
+  </div>
+</article>
+
 
             <article class="portfolio-card expandable-case-study">
               <div class="portfolio-thumbnail">
@@ -300,15 +355,19 @@
               <div class="portfolio-meta">
                 <span class="meta-item">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 1-3-3V7a3 3 0 0 0-3-3H2z"/>
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 1 3 3V7a3 3 0 0 0-3-3H2z"/>
                     <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 0 3 3h7V7a3 3 0 0 1-3-3z"/>
                   </svg>
                   Guide & Tutorial
                 </span>
                 <span class="meta-item">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  aria-label="Click here to learn more">
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="10" x2="12" y2="16" />
+                    <circle cx="12" cy="7" r="0.8" />
+                    <polyline points="16 16 20 20 20 15" />
                   </svg>
                   Print and PDF Compatible
                 </span>
@@ -319,16 +378,11 @@
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                   aria-label="Click here to learn more">
-               <!-- Circle for 'info' -->
-               <circle cx="12" cy="12" r="10" />
-               <!-- 'i' stem -->
-               <line x1="12" y1="10" x2="12" y2="16" />
-               <!-- 'i' dot -->
-               <circle cx="12" cy="7" r="0.8" />
-               <!-- Small cursor arrow to indicate click -->
-               <polyline points="16 16 20 20 20 15" />
-             </svg>
-             
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="10" x2="12" y2="16" />
+                    <circle cx="12" cy="7" r="0.8" />
+                    <polyline points="16 16 20 20 20 15" />
+                  </svg>
                 </a>
                 <button class="btn btn-ghost toggle-case-study">View Details</button>
               </div>
@@ -380,7 +434,7 @@
             <div class="document-card">
               <div class="document-icon">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 1-3-3V7a3 3 0 0 0-3-3H2z"/>
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 1 3 3V7a3 3 0 0 0-3-3H2z"/>
                   <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 0 3 3h7V7a3 3 0 0 1-3-3z"/>
                 </svg>
               </div>
@@ -485,7 +539,6 @@
       <section id="journey" class="section-fade">
         <div class="section-title">
           <h2 style="margin:0">My Journey</h2>
-          <div class="muted">Transitioning from technical writing to product management</div>
         </div>
 
         <div class="journey-timeline">
@@ -532,13 +585,7 @@
                 <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
               </svg>
-              <p class="testimonial-text">Bharath was my reportee for more than a year (2019-20). 
-
-                He is a good team player and a hard-working professional.
-                
-                He is dependable. I can give him a task and forget about it. No follow ups required. Because I know that he will track it and ensure it is done. If he is stuck, he will proactively come to me asking for help. 
-                
-                He is a quick learner. When he joins a product team, he learns the product and understands the team dynamics very quickly. He takes very little time to ramp up and start delivering.</p>
+              <p class="testimonial-text">Bharath was my reportee for more than a year (2019-20). He is a good team player and a hard-working professional. He is dependable... He is a quick learner...</p>
             </div>
             <div class="testimonial-author">
               <div class="testimonial-avatar">KP</div>
@@ -555,7 +602,7 @@
                 <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
               </svg>
-              <p class="testimonial-text">Bharath is very energetic and unique one to work with and easily adjustable to any situation. His ability to go out of his way to help others made him stand out. I highly recommend his expertise. </p>
+              <p class="testimonial-text">Bharath is very energetic and unique one to work with... I highly recommend his expertise.</p>
             </div>
             <div class="testimonial-author">
               <div class="testimonial-avatar">SV</div>
@@ -572,7 +619,7 @@
                 <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
               </svg>
-              <p class="testimonial-text">As a technical writer, Bharath always comes up with good ideas on how we can improve the product documentation. He is a quick learner and he understands the requirements very well and delivers high-quality documents. I highly recommend his expertise</p>
+              <p class="testimonial-text">As a technical writer, Bharath always comes up with good ideas... delivers high-quality documents.</p>
             </div>
             <div class="testimonial-author">
               <div class="testimonial-avatar">SS</div>
@@ -582,13 +629,14 @@
               </div>
             </div>
           </div>
+
           <div class="testimonial-card">
             <div class="testimonial-content">
               <svg class="testimonial-quote" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
               </svg>
-              <p class="testimonial-text">Bharath Ram is one of the best people I have ever worked with. His hands-on approach to Technical Writing, Public Speaking , Hardworking and powerful character won him the respect of the team. Bharath Ram is extremely enthusiastic about his work which is infectious. He is ready to deal with difficult situations and solve the problems on time. He always takes care of the job. Bharath Ram possesses a winning combination of solid tech skills and i highly recommend him for employment.</p>
+              <p class="testimonial-text">Bharath Ram is one of the best people I have ever worked with... highly recommend him.</p>
             </div>
             <div class="testimonial-author">
               <div class="testimonial-avatar">AM</div>
@@ -598,13 +646,14 @@
               </div>
             </div>
           </div>
+
           <div class="testimonial-card">
             <div class="testimonial-content">
               <svg class="testimonial-quote" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
               </svg>
-              <p class="testimonial-text">Bharath is a well connected professional that always takes the time to support anyone in his circle. I had the privilege of working with Bharath for more than an year at Rusada. He is creative, energetic, solutions oriented and highly motivated with great communication skills. As a team member and a good friend, Bharath earns my highest recommendation. </p>
+              <p class="testimonial-text">Bharath is a well connected professional... earns my highest recommendation.</p>
             </div>
             <div class="testimonial-author">
               <div class="testimonial-avatar">VJ</div>
@@ -613,55 +662,41 @@
                 <div class="testimonial-role">Project Manager, LTB400 Aviation Software</div>
               </div>
             </div>
-            </div>
-            <div class="testimonial-card">
-              <div class="testimonial-content">
-                <svg class="testimonial-quote" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
-                  <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
-                </svg>
-                <p class="testimonial-text">A person with great ideas and very good at adopting things easily.Always possess a positive attitude and enjoyed working with him as a team.</p>
-              </div>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">JA</div>
-                <div class="testimonial-info">
-                  <div class="testimonial-name">Jerin Mary Abraham</div>
-                  <div class="testimonial-role">Business Analyst, Service New Brunswick</div>
-                </div>
-              </div>
           </div>
+
           <div class="testimonial-card">
             <div class="testimonial-content">
               <svg class="testimonial-quote" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
                 <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
               </svg>
-              <p class="testimonial-text">He is very hardworking and very enthusiastic guy.We together worked for 2 years and really enjoyed working with him.</p>
+              <p class="testimonial-text">A person with great ideas and very good at adopting things easily. Always positive.</p>
             </div>
             <div class="testimonial-author">
-              <div class="testimonial-avatar">RL</div>
+              <div class="testimonial-avatar">JA</div>
               <div class="testimonial-info">
-                <div class="testimonial-name">Rajiv Lochanayak</div>
-                <div class="testimonial-role">Technical Service Assistant Manager, Jotun Paints</div>
+                <div class="testimonial-name">Jerin Mary Abraham</div>
+                <div class="testimonial-role">Business Analyst, Service New Brunswick</div>
               </div>
             </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-content">
-            <svg class="testimonial-quote" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
-              <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
-            </svg>
-            <p class="testimonial-text">Capable of multi tasking, very creative, knowledgeable, precision delivered in every task performed. Highly motivated, attention to detail.</p>
           </div>
-          <div class="testimonial-author">
-            <div class="testimonial-avatar">DR</div>
-            <div class="testimonial-info">
-              <div class="testimonial-name">Dheepak Rajaram</div>
-              <div class="testimonial-role">Business Analyst, WAAS Aerospace</div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <svg class="testimonial-quote" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/>
+                <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+              </svg>
+              <p class="testimonial-text">Capable of multi tasking, very creative, knowledgeable... Highly motivated.</p>
+            </div>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">DR</div>
+              <div class="testimonial-info">
+                <div class="testimonial-name">Dheepak Rajaram</div>
+                <div class="testimonial-role">Business Analyst, WAAS Aerospace</div>
+              </div>
             </div>
           </div>
-      </div>
         </div>
       </section>
 
@@ -733,7 +768,9 @@
           </article>
         </div>
       </section>
-<br
+
+      <br />
+
       <section id="contact" class="section-fade">
         <div class="section-title">
           <h2 style="margin:0">Contact</h2>
@@ -752,9 +789,7 @@
           <div class="contact-item">
             <p class="muted contact-label">Links</p>
             <div class="contact-links">
-              <a href="www.linkedin.com/in/bharath-ram-0b6612120" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
-             <!-- <span class="contact-separator">•</span>
-              <a href="https://github.com/your-username" target="_blank" rel="noopener noreferrer" class="contact-link">GitHub</a> -->
+              <a href="https://www.linkedin.com/in/bharath-ram-0b6612120" target="_blank" rel="noopener noreferrer" class="contact-link">LinkedIn</a>
             </div>
           </div>
         </div>
@@ -777,7 +812,7 @@
         <a href="#articles" class="mobile-menu-link">Articles</a>
         <a href="#testimonials" class="mobile-menu-link">Testimonials</a>
         <a href="#contact" class="mobile-menu-link">Contact</a>
-        <a href="/resume.pdf" class="mobile-menu-link">Resume</a>
+        <a href="Bharath_Ram_Resume.pdf" class="mobile-menu-link">Resume</a>
       </div>
     </div>
   </div>
@@ -794,11 +829,8 @@
     // ===== Security: Safe Query Selector =====
     function safeQuerySelector(selector) {
       if (!selector || typeof selector !== 'string') return null;
-      // Only allow safe selectors (alphanumeric, hyphens, underscores, #, ., [], spaces)
       if (!/^[a-zA-Z0-9#.\s\[\]_-]+$/.test(selector)) return null;
-      try {
-        return document.querySelector(selector);
-      } catch (e) {
+      try { return document.querySelector(selector); } catch (e) {
         console.error('Invalid selector:', selector);
         return null;
       }
@@ -832,98 +864,161 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== Mobile Menu Toggle =====
-    const menuBtn = document.getElementById('menuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    
-    if (menuBtn && mobileMenu) {
-      menuBtn.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.contains('open');
-        mobileMenu.classList.toggle('open');
-        menuBtn.classList.toggle('active');
-        menuBtn.setAttribute('aria-expanded', (!isOpen).toString());
-        document.body.style.overflow = !isOpen ? 'hidden' : '';
+    // ===== Mobile Menu (robust + duplicate-ID safe) =====
+    (function () {
+      const menuBtn = document.getElementById('menuBtn');
+      if (!menuBtn) return;
+
+      // There are TWO #mobileMenu in the DOM. Prefer the <nav> one near header.
+      const allMobileMenus = Array.from(document.querySelectorAll('#mobileMenu, .mobile-menu'));
+      let mobileMenu =
+        allMobileMenus.find(el => el.tagName && el.tagName.toLowerCase() === 'nav') ||
+        allMobileMenus[0] || null;
+
+      if (!mobileMenu) return;
+
+      // a11y
+      if (!menuBtn.hasAttribute('aria-controls')) {
+        menuBtn.setAttribute('aria-controls', mobileMenu.id || 'mobileMenu');
+      }
+      menuBtn.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenu.setAttribute('tabindex', '-1');
+
+      const mqDesktop = window.matchMedia('(min-width: 1024px)');
+      let lastFocus = null;
+
+      function lockScroll(lock) {
+        document.documentElement.style.overflow = lock ? 'hidden' : '';
+        document.body.style.overflow = lock ? 'hidden' : '';
+        document.body.style.touchAction = lock ? 'none' : '';
+      }
+
+      function openMenu() {
+        mobileMenu.classList.add('open');
+        menuBtn.classList.add('active');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenu.setAttribute('aria-hidden', 'false');
+        lastFocus = document.activeElement;
+        lockScroll(true);
+        mobileMenu.focus({ preventScroll: true });
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.remove('open');
+        menuBtn.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+        lockScroll(false);
+        if (lastFocus && document.contains(lastFocus)) {
+          menuBtn.focus({ preventScroll: true });
+        }
+      }
+
+      function isOpen() {
+        return mobileMenu.classList.contains('open');
+      }
+
+      menuBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        isOpen() ? closeMenu() : openMenu();
       });
 
-      // Close menu when clicking outside
       document.addEventListener('click', (e) => {
+        if (!isOpen()) return;
         if (!menuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
-          mobileMenu.classList.remove('open');
-          menuBtn.classList.remove('active');
-          menuBtn.setAttribute('aria-expanded', 'false');
-          document.body.style.overflow = '';
+          closeMenu();
         }
       });
-    }
 
-    // ===== Smooth Scroll for Internal Links =====
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (!href || href === '#' || href.length > 100) return; // Security: limit href length
-        
-        // Security: Validate href is a safe anchor link
-        if (!/^#[a-zA-Z0-9_-]+$/.test(href)) return;
-        
-        const target = safeQuerySelector(href);
-        if (target) {
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) closeMenu();
+      });
+
+      mobileMenu.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
+        if (a) closeMenu();
+      });
+
+      mqDesktop.addEventListener('change', (ev) => {
+        if (ev.matches) {
+          closeMenu();
+        }
+      });
+
+      // Hook for smooth-scroll to close menu
+      window.__closeMobileMenu = closeMenu;
+    })();
+
+    // ===== Smooth Scroll for Internal Links (robust) =====
+    (function () {
+      const HEADER_OFFSET = 80;
+
+      function getTargetFromHref(href) {
+        if (!href || href === '#' || href.length > 200) return null;
+        if (!href.startsWith('#')) return null;
+        const id = href.slice(1);
+        if (!/^[A-Za-z0-9_-]+$/.test(id)) return null;
+        return document.getElementById(id) || document.querySelector('#' + id);
+      }
+
+      function smoothScrollToElement(el) {
+        const rectTop = el.getBoundingClientRect().top + window.pageYOffset;
+        const top = Math.max(0, rectTop - HEADER_OFFSET);
+        window.scrollTo({ top, behavior: 'smooth' });
+        requestAnimationFrame(() => {
+          const rectTop2 = el.getBoundingClientRect().top + window.pageYOffset;
+          const top2 = Math.max(0, rectTop2 - HEADER_OFFSET);
+          window.scrollTo({ top: top2, behavior: 'auto' });
+        });
+      }
+
+      const anchors = document.querySelectorAll('a[href^="#"]:not([href="#"])');
+      anchors.forEach(a => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href') || '';
+          const target = getTargetFromHref(href);
+          if (!target) return;
           e.preventDefault();
-          const headerOffset = 80;
-          const elementPosition = target.getBoundingClientRect().top;
-          const offsetPosition = Math.max(0, elementPosition + window.pageYOffset - headerOffset);
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-
-          // Close mobile menu if open
-          if (mobileMenu && mobileMenu.classList.contains('open')) {
-            mobileMenu.classList.remove('open');
-            menuBtn.classList.remove('active');
-            menuBtn.setAttribute('aria-expanded', 'false');
-            document.body.style.overflow = '';
-          }
-        }
+          smoothScrollToElement(target);
+          if (history.pushState) { history.pushState(null, '', href); } else { location.hash = href; }
+          if (typeof window.__closeMobileMenu === 'function') window.__closeMobileMenu();
+        });
       });
-    });
+
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest && e.target.closest('a[href^="#"]:not([href="#"])');
+        if (!a) return;
+        if (anchors && Array.prototype.includes && Array.prototype.includes.call(anchors, a)) return;
+        const href = a.getAttribute('href') || '';
+        const target = getTargetFromHref(href);
+        if (!target) return;
+        e.preventDefault();
+        smoothScrollToElement(target);
+        if (history.pushState) { history.pushState(null, '', href); } else { location.hash = href; }
+        if (typeof window.__closeMobileMenu === 'function') window.__closeMobileMenu();
+      });
+    })();
 
     // ===== Scroll Animations (Intersection Observer) =====
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // Security: Validate entry and target
         if (!entry || !entry.target || typeof entry.target.classList !== 'object') return;
         if (entry.isIntersecting) {
-          // Security: Only allow adding 'visible' class
           const allowedClasses = ['visible'];
-          allowedClasses.forEach(cls => {
-            if (/^[a-zA-Z0-9_-]+$/.test(cls)) {
-              entry.target.classList.add(cls);
-            }
-          });
+          allowedClasses.forEach(cls => { if (/^[a-zA-Z0-9_-]+$/.test(cls)) entry.target.classList.add(cls); });
         }
       });
     }, observerOptions);
 
-    // Observe all fade-in elements with validation
     const allowedSelectors = ['.fade-in', '.fade-in-delay', '.section-fade', '.card-interactive', '.prd-item-interactive'];
     const selectorPattern = /^[a-zA-Z0-9#.\s\[\]_-]+$/;
     allowedSelectors.forEach(selector => {
       if (selectorPattern.test(selector) && selector.length < 100) {
         try {
-          document.querySelectorAll(selector).forEach(el => {
-            if (el && el.nodeType === 1) { // Ensure it's an element node
-              observer.observe(el);
-            }
-          });
-        } catch (e) {
-          console.error('Invalid selector for observer:', selector);
-        }
+          document.querySelectorAll(selector).forEach(el => { if (el && el.nodeType === 1) observer.observe(el); });
+        } catch (e) { console.error('Invalid selector for observer:', selector); }
       }
     });
 
@@ -933,169 +1028,106 @@
 
     function highlightNav() {
       const scrollY = Math.max(0, window.pageYOffset);
-      const offset = 150; // Offset for sticky header
+      const offset = 150;
       let currentSection = null;
 
-      // Check sections in reverse order (bottom to top) so lower sections take priority
-      // This ensures that when scrolling, the section you're actually in is highlighted
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         const sectionId = section.getAttribute('id');
-        
-        // Security: Validate section ID
         if (!sectionId || !/^[a-zA-Z0-9_-]+$/.test(sectionId)) continue;
-        
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionBottom = sectionTop + sectionHeight;
-
-        // Check if scroll position is within this section (with offset for header)
         if (scrollY + offset >= sectionTop && scrollY < sectionBottom) {
           currentSection = sectionId;
-          break; // Use the first (lowest) matching section
+          break;
         }
       }
 
-      // If no section matches, find the closest one
       if (!currentSection) {
         let closestSection = null;
         let closestDistance = Infinity;
-
         sections.forEach(section => {
           const sectionId = section.getAttribute('id');
           if (!sectionId || !/^[a-zA-Z0-9_-]+$/.test(sectionId)) return;
-          
           const sectionTop = section.offsetTop;
           const distance = Math.abs(scrollY + offset - sectionTop);
-          
-          if (distance < closestDistance) {
-            closestDistance = distance;
-            closestSection = sectionId;
-          }
+          if (distance < closestDistance) { closestDistance = distance; closestSection = sectionId; }
         });
-        
         currentSection = closestSection;
       }
 
-      // Update active state for nav links
       navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
-        // Security: Validate href
         if (!linkHref || linkHref.length > 100) return;
-        
         link.classList.remove('active');
-        if (linkHref === `#${currentSection}`) {
-          link.classList.add('active');
-        }
+        if (linkHref === `#${currentSection}`) link.classList.add('active');
       });
     }
 
-    // Handle click events on nav links to immediately highlight
     navLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function() {
         const href = this.getAttribute('href');
-        // Security: Validate href
         if (!href || href.length > 100 || !href.startsWith('#')) return;
-        
-        // Remove active from all links
         navLinks.forEach(l => l.classList.remove('active'));
-        // Add active to clicked link
         this.classList.add('active');
-        
-        // Update after scroll completes
         setTimeout(highlightNav, 100);
       });
     });
 
     window.addEventListener('scroll', highlightNav);
-    highlightNav(); // Initial call
+    highlightNav();
 
     // ===== Card Hover Effects =====
     document.querySelectorAll('.card-interactive').forEach(card => {
-      // Security: Validate element before adding listeners
       if (!card || card.nodeType !== 1) return;
-      
-      card.addEventListener('mouseenter', function() {
-        // Security: Validate this context
-        if (!this || typeof this.style !== 'object') return;
-        this.style.transform = 'translateY(-4px)';
-      });
-      card.addEventListener('mouseleave', function() {
-        // Security: Validate this context
-        if (!this || typeof this.style !== 'object') return;
-        this.style.transform = 'translateY(0)';
-      });
+      card.addEventListener('mouseenter', function() { if (!this || typeof this.style !== 'object') return; this.style.transform = 'translateY(-4px)'; });
+      card.addEventListener('mouseleave', function() { if (!this || typeof this.style !== 'object') return; this.style.transform = 'translateY(0)'; });
     });
 
     // ===== Button Ripple Effect =====
     document.querySelectorAll('.btn').forEach(button => {
       button.addEventListener('click', function(e) {
-        // Security: Validate event and element
         if (!e || !this || !this.getBoundingClientRect) return;
-        
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
-        const size = Math.min(200, Math.max(10, Math.max(rect.width, rect.height))); // Limit size
+        const size = Math.min(200, Math.max(10, Math.max(rect.width, rect.height)));
         const x = Math.max(0, Math.min(rect.width, e.clientX - rect.left - size / 2));
         const y = Math.max(0, Math.min(rect.height, e.clientY - rect.top - size / 2));
-        
         ripple.style.width = size + 'px';
         ripple.style.height = size + 'px';
         ripple.style.left = x + 'px';
         ripple.style.top = y + 'px';
         ripple.classList.add('ripple');
-        
         this.appendChild(ripple);
-        
-        setTimeout(() => {
-          if (ripple && ripple.parentNode) {
-            ripple.remove();
-          }
-        }, 600);
+        setTimeout(() => { if (ripple && ripple.parentNode) ripple.remove(); }, 600);
       });
     });
 
     // ===== Header Scroll Effect =====
     const header = document.querySelector('.header-sticky');
-    let lastScroll = 0;
-
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
-      
       if (header) {
-        if (currentScroll > 100) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        if (currentScroll > 100) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
       }
-      
-      lastScroll = currentScroll;
     });
 
     // ===== Portfolio Tabs =====
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
-
     tabButtons.forEach(button => {
       button.addEventListener('click', () => {
         const targetTab = button.getAttribute('data-tab');
-        
-        // Security: Validate tab name to prevent DOM manipulation
         if (!targetTab || typeof targetTab !== 'string') return;
-        if (!/^[a-zA-Z0-9_-]+$/.test(targetTab)) return; // Only allow alphanumeric, hyphens, underscores
-        if (targetTab.length > 50) return; // Limit length
-        
-        // Remove active class from all buttons and contents
+        if (!/^[a-zA-Z0-9_-]+$/.test(targetTab)) return;
+        if (targetTab.length > 50) return;
         tabButtons.forEach(btn => btn.classList.remove('active'));
         tabContents.forEach(content => content.classList.remove('active'));
-        
-        // Add active class to clicked button and corresponding content
         button.classList.add('active');
         const targetContent = safeQuerySelector(`#${targetTab}-tab`);
-        if (targetContent && targetContent.classList.contains('tab-content')) {
-          targetContent.classList.add('active');
-        }
+        if (targetContent && targetContent.classList.contains('tab-content')) targetContent.classList.add('active');
       });
     });
 
@@ -1104,19 +1136,11 @@
       button.addEventListener('click', function() {
         const card = this.closest('.expandable-case-study');
         if (!card) return;
-        
         const details = card.querySelector('.case-study-details');
         if (!details) return;
-        
         const isExpanded = card.classList.contains('expanded');
-        
-        if (isExpanded) {
-          card.classList.remove('expanded');
-          this.textContent = 'View Details';
-        } else {
-          card.classList.add('expanded');
-          this.textContent = 'Hide Details';
-        }
+        if (isExpanded) { card.classList.remove('expanded'); this.textContent = 'View Details'; }
+        else { card.classList.add('expanded'); this.textContent = 'Hide Details'; }
       });
     });
 
