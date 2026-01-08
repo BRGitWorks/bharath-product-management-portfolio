@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hero Trailblazers | Learn. Ride. Lead.</title>
+  <meta name="description" content="Hero Trailblazers onboarding – PAYG trial, Annual Subscription, Buy-back program." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+/* ================= ROOT THEME ================= */
+
+:root {
+  --bg: #f4f4f4;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #666;
+  --accent: #ff6a00;
+  --border: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f0f;
+  --surface: #1a1a1a;
+  --text: #f5f5f5;
+  --muted: #aaa;
+  --border: #2a2a2a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ================= BODY ================= */
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ================= HEADER ================= */
+
+header {
+  min-height: 72px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 2rem;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 52px;
+  width: auto;
+  display: block;
+
+  /* Kill borders / outlines / debug artifacts */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.logo img:focus,
+.logo img:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* ================= ACTION BUTTONS ================= */
+
+.actions button {
+  margin-left: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 6px;
+
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+
+.actions .primary {
+  background: var(--accent);
+  border: none;
+  color: #fff;
+}
+
+/* ================= HERO SECTION ================= */
+
+.hero {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 4.5rem 2.5rem;
+
+  min-height: 520px;
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.55),
+      rgba(255, 255, 255, 0.55)
+    ),
+    url('hero-bike-light.webp') center 75% / cover no-repeat;
+
+  transition: background 0.3s ease;
+}
+
+[data-theme="dark"] .hero {
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.55)
+    ),
+    url('hero-bike-dark.webp') center 75% / cover no-repeat;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  max-width: 600px;
+  color: var(--muted);
+}
+
+/* ================= SECTIONS ================= */
+
+.section-title {
+  max-width: 1200px;
+  margin: 2rem auto 1rem;
+  padding: 0 2rem;
+  font-weight: 600;
+}
+
+.options {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 2rem 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.ribbon {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 106, 0, 0.15);
+  color: var(--accent);
+  margin-bottom: 0.8rem;
+}
+
+.card h3 {
+  margin: 0.2rem 0;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.card ul {
+  margin: 1rem 0 1.2rem;
+  padding-left: 1.2rem;
+  font-size: 0.9rem;
+}
+
+.card li {
+  margin-bottom: 0.4rem;
+}
+
+.cta {
+  margin-top: auto;
+  padding: 0.7rem;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.helper {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* ================= WHY SECTION ================= */
+
+.why {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.why div {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.4rem;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+  header {
+    min-height: 64px;
+    padding: 0 1rem;
+  }
+
+  .logo img {
+    height: 42px;
+  }
+
+  .hero {
+    min-height: 420px;
+    padding: 3rem 1.5rem;
+    background-position: center 80%;
+  }
+}
+</style>
+</head>
+
+<body data-theme="light">
+
+<header>
+  <div class="logo">
+    <img id="brandLogo" src="logo-light.svg" alt="Hero Trailblazers logo">
+  </div>
+  <div class="actions">
+    <button onclick="toggleTheme()">🌙 / ☀️</button>
+    <button>Sign In</button>
+    <button class="primary">Create Account</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Learn. Ride. Lead.</h1>
+  <p>Ride with Pride. Choose how you want to begin your Trailblazers journey — learn, try, or commit.</p>
+</section>
+
+<div class="section-title">Choose your journey</div>
+
+<section class="options">
+  <div class="card">
+    <div class="ribbon">Best for first-time riders</div>
+    <h3>PAYG Trial</h3>
+    <p>Try adventure riding before committing to ownership.</p>
+    <ul>
+      <li>6 or 12 month Xpulse access</li>
+      <li>Beginner-friendly riding lessons</li>
+      <li>Community rides & events</li>
+      <li>Quarterly subscription benefits</li>
+    </ul>
+    <div class="cta">Request PAYG Bike</div>
+    <div class="helper">Limited availability. Ownership option is offered after the trial.</div>
+  </div>
+
+  <div class="card">
+    <div class="ribbon">Best value</div>
+    <h3>Annual Subscription</h3>
+    <p>Own the motorcycle. Unlock the full experience.</p>
+    <ul>
+      <li>Riding academies (Beginner → Advanced)</li>
+      <li>Curated rides and long-distance tours</li>
+      <li>City-based Trailblazers community</li>
+      <li>Exclusive merchandise</li>
+    </ul>
+    <div class="cta">Explore Annual Subscription</div>
+    <div class="helper">Includes eligibility for Buy-Back & Upgrade Program</div>
+  </div>
+
+  <div class="card">
+    <div class="ribbon">Existing members only</div>
+    <h3>Buy-Back & Upgrade</h3>
+    <p>Available only to riders with an active Annual Subscription.</p>
+    <ul>
+      <li>Assured buy-back value</li>
+      <li>Upgrade path to newer Xpulse models</li>
+      <li>Subscription benefits continue</li>
+      <li>Reduced ownership risk</li>
+    </ul>
+    <div class="cta">Check Buy-Back Eligibility</div>
+  </div>
+</section>
+
+<section class="why">
+  <div><h4>🏍️ Learn with Confidence</h4><p>Certified trainers and structured learning paths.</p></div>
+  <div><h4>🌍 Ride with Community</h4><p>Local chapters, curated rides, real connections.</p></div>
+  <div><h4>🛡️ Lead with Pride</h4><p>Recognition, milestones, belonging.</p></div>
+</section>
+
+<footer>Hero Trailblazers — Ride with Pride</footer>
+
+<script>
+  function toggleTheme() {
+    const body = document.body;
+    const logo = document.getElementById('brandLogo');
+
+    if (body.getAttribute('data-theme') === 'dark') {
+      body.setAttribute('data-theme', 'light');
+      logo.src = 'logo-light.svg';
+    } else {
+      body.setAttribute('data-theme', 'dark');
+      logo.src = 'logo-dark.svg';
+    }
+  }
+</script>
+
+</body>
+</html>
