@@ -13,41 +13,99 @@ body{font-family:'Inter',sans-serif;background:#F8FAFC;color:#1E293B;overflow-x:
 .background-glow{position:fixed;width:520px;height:520px;border-radius:50%;background:#C4B5FD;filter:blur(180px);opacity:0.26;top:-180px;right:-120px;z-index:-1;}
 .container{width:100%;max-width:980px;margin:auto;padding:0 24px;}
 header{padding:24px 0;position:sticky;top:0;z-index:1000;backdrop-filter:blur(16px);background:rgba(248,250,252,0.82);border-bottom:1px solid #E2E8F0;}
-.header-content{display:flex;justify-content:space-between;align-items:center;}.logo-wrapper{display:flex;align-items:center;gap:14px;}.wittr-logo{width:56px;height:56px;object-fit:contain;}.brand-title{font-size:22px;font-weight:800;}.brand-subtitle{font-size:14px;color:#64748B;}
-.hero{text-align:center;padding:70px 0 40px;}.hero h1{font-size:52px;line-height:60px;font-weight:800;letter-spacing:-1.5px;margin-bottom:18px;}.hero p{font-size:18px;color:#64748B;max-width:700px;margin:0 auto;line-height:32px;}
+.header-content{display:flex;justify-content:space-between;align-items:center;}
+.logo-wrapper{display:flex;align-items:center;gap:14px;}
+.wittr-logo{width:56px;height:56px;object-fit:contain;}
+.brand-title{font-size:22px;font-weight:800;}
+.brand-subtitle{font-size:14px;color:#64748B;}
+.hero{text-align:center;padding:70px 0 40px;}
+.hero h1{font-size:52px;line-height:60px;font-weight:800;letter-spacing:-1.5px;margin-bottom:18px;}
+.hero p{font-size:18px;color:#64748B;max-width:700px;margin:0 auto;line-height:32px;}
 .form-card{background:#FFF;border:1px solid #E2E8F0;border-radius:32px;padding:42px;box-shadow:0 18px 40px rgba(15,23,42,0.06);margin-bottom:80px;}
-.section-title{font-size:24px;font-weight:800;margin-bottom:20px;}.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:30px;}
-.choice-card{border:2px solid #E2E8F0;border-radius:22px;padding:24px;cursor:pointer;transition:0.25s ease;background:#FFF;}.choice-card:hover,.choice-card.active{border-color:#7C3AED;background:#F5F3FF;}
-.choice-card h3{font-size:20px;margin-bottom:8px;}.choice-card p{color:#64748B;line-height:28px;}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}.full-width{grid-column:1 / -1;}
-label{display:block;font-weight:700;margin-bottom:8px;font-size:14px;} input,select,textarea{width:100%;padding:14px 16px;border:1px solid #CBD5E1;border-radius:14px;font-family:inherit;font-size:15px;outline:none;} textarea{min-height:120px;resize:vertical;}
- .hidden{display:none;}
+.section-title{font-size:24px;font-weight:800;margin-bottom:20px;}
+.choice-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:30px;}
+.choice-card{border:2px solid #E2E8F0;border-radius:22px;padding:24px;cursor:pointer;transition:0.25s ease;background:#FFF;text-align:left;font-family:inherit;width:100%;}
+.choice-card:hover,.choice-card.active{border-color:#7C3AED;background:#F5F3FF;}
+.choice-card h3{font-size:20px;margin-bottom:8px;}
+.choice-card p{color:#64748B;line-height:28px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.full-width{grid-column:1 / -1;}
+label{display:block;font-weight:700;margin-bottom:8px;font-size:14px;}
+input,select,textarea{width:100%;padding:14px 16px;border:1px solid #CBD5E1;border-radius:14px;font-family:inherit;font-size:15px;outline:none;}
+textarea{min-height:120px;resize:vertical;}
+.hidden{display:none;}
 .button-row{display:flex;justify-content:flex-end;margin-top:28px;}
-.primary-btn{display:inline-flex;padding:16px 28px;border:none;border-radius:18px;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:#FFF;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 12px 30px rgba(124,58,237,0.24);} 
-.success-screen{text-align:center;padding:50px 20px;display:none;}.success-screen h2{font-size:42px;margin-bottom:18px;}.success-screen p{font-size:18px;color:#64748B;line-height:32px;max-width:650px;margin:0 auto 30px;}
-@media(max-width:768px){.choice-grid,.form-grid{grid-template-columns:1fr;} .hero h1{font-size:38px;line-height:46px;} .form-card{padding:28px;}}
+.primary-btn{display:inline-flex;padding:16px 28px;border:none;border-radius:18px;background:linear-gradient(135deg,#7C3AED,#4F46E5);color:#FFF;font-weight:700;font-size:16px;cursor:pointer;box-shadow:0 12px 30px rgba(124,58,237,0.24);}
+.success-screen{text-align:center;padding:80px 20px;display:none;}
+.success-screen h2{font-size:42px;margin-bottom:18px;}
+.success-screen p{font-size:18px;color:#64748B;line-height:32px;max-width:650px;margin:0 auto 30px;}
+@media(max-width:768px){
+.choice-grid,.form-grid{grid-template-columns:1fr;}
+.hero h1{font-size:38px;line-height:46px;}
+.form-card{padding:28px;}
+}
 </style>
 </head>
 <body>
 <div class="background-glow"></div>
-<header><div class="container header-content"><div class="logo-wrapper"><img src="wittr_logo.png" class="wittr-logo"><div><div class="brand-title">WITTR</div><div class="brand-subtitle">Beta Enrollment</div></div></div></div></header>
-<section class="hero"><div class="container"><h1>Request Early Access to WITTR Clips</h1><p>Tell us a bit about yourself so we can curate the right early beta experience for creators and viewers.</p></div></section>
+<header>
+<div class="container header-content">
+<div class="logo-wrapper">
+<img src="wittr_logo.png" class="wittr-logo" alt="WITTR Logo">
+<div>
+<div class="brand-title">WITTR</div>
+<div class="brand-subtitle">Beta Enrollment</div>
+</div>
+</div>
+</div>
+</header>
+<section class="hero">
+<div class="container">
+<h1>Join the WITTR Clips Beta</h1>
+<p>Be among the first creators and viewers to experience WITTR Clips before public launch and help shape the future of conversational short-form storytelling.</p>
+</div>
+</section>
 <div class="container">
 <div class="form-card" id="enrollmentCard">
 <div class="section-title">Are you already a WITTR user?</div>
 <div class="choice-grid">
-<div class="choice-card" onclick="selectUserType('existing', this)"><h3>Existing WITTR User</h3><p>I already use WITTR and want access to WITTR Clips beta.</p></div>
-<div class="choice-card" onclick="selectUserType('new', this)"><h3>New to WITTR</h3><p>I’m new and would like to join the beta ecosystem.</p></div>
+<button type="button" class="choice-card" id="existingBtn">
+<h3>Existing WITTR User</h3>
+<p>I already use WITTR and want access to WITTR Clips beta.</p>
+</button>
+<button type="button" class="choice-card" id="newBtn">
+<h3>New to WITTR</h3>
+<p>I’m new and would like to join the beta ecosystem.</p>
+</button>
 </div>
 <form id="betaForm">
 <div id="commonFields" class="form-grid hidden">
-<div><label>Email Address</label><input type="email" required></div>
-<div><label>Joining As</label><select required><option>Viewer</option><option>Creator</option><option>Both</option></select></div>
-<div class="full-width"><label>Areas of Interest</label><input type="text" placeholder="Technology, News, Lifestyle, Entertainment"></div>
-<div class="full-width"><label>Why do you want beta access?</label><textarea></textarea></div>
+<div>
+<label>Email Address</label>
+<input type="email" required>
+</div>
+<div>
+<label>Joining As</label>
+<select required>
+<option>Viewer</option>
+<option>Creator</option>
+<option>Both</option>
+</select>
+</div>
+<div class="full-width">
+<label>Areas of Interest</label>
+<input type="text" placeholder="Technology, News, Lifestyle, Entertainment">
+</div>
+<div class="full-width">
+<label>Why do you want beta access?</label>
+<textarea></textarea>
+</div>
 </div>
 <div id="existingFields" class="form-grid hidden">
-<div><label>WITTR Username</label><input type="text"></div>
+<div>
+<label>WITTR Username</label>
+<input type="text">
+</div>
 </div>
 <div id="newFields" class="form-grid hidden">
 <div><label>Full Name</label><input type="text"></div>
@@ -56,35 +114,50 @@ label{display:block;font-weight:700;margin-bottom:8px;font-size:14px;} input,sel
 <div><label>Desired Username</label><input type="text"></div>
 <div class="full-width"><label>How did you hear about WITTR?</label><input type="text"></div>
 </div>
-<div class="button-row hidden" id="submitRow"><button type="submit" class="primary-btn">Submit Beta Request</button></div>
+<div class="button-row hidden" id="submitRow">
+<button type="submit" class="primary-btn">Submit Beta Request</button>
+</div>
 </form>
 </div>
 <div class="success-screen" id="successScreen">
-<h2>🎉 Beta Request Submitted</h2>
-<p>Thanks for your interest in WITTR Clips. Your request has been successfully recorded. Selected creators and viewers will receive beta invitations soon.</p>
+<h2>🎉 You’re on the WITTR Clips Beta Waitlist</h2>
+<p>Thanks for joining our early access program. We’re reviewing applications and will invite selected creators and viewers in phased beta rollouts. Stay tuned!</p>
 <button class="primary-btn" onclick="window.location.href='wittr.html'">Return to WITTR</button>
 </div>
 </div>
 <script>
 function selectUserType(type, el){
- document.querySelectorAll('.choice-card').forEach(card=>card.classList.remove('active'));
- el.classList.add('active');
- document.getElementById('commonFields').classList.remove('hidden');
- document.getElementById('submitRow').classList.remove('hidden');
- if(type==='existing'){
-   document.getElementById('existingFields').classList.remove('hidden');
-   document.getElementById('newFields').classList.add('hidden');
- } else {
-   document.getElementById('newFields').classList.remove('hidden');
-   document.getElementById('existingFields').classList.add('hidden');
- }
+  document.querySelectorAll('.choice-card').forEach(function(card){
+    card.classList.remove('active');
+  });
+
+  el.classList.add('active');
+  document.getElementById('commonFields').classList.remove('hidden');
+  document.getElementById('submitRow').classList.remove('hidden');
+
+  if(type === 'existing'){
+    document.getElementById('existingFields').classList.remove('hidden');
+    document.getElementById('newFields').classList.add('hidden');
+  } else {
+    document.getElementById('newFields').classList.remove('hidden');
+    document.getElementById('existingFields').classList.add('hidden');
+  }
 }
 
+document.getElementById('existingBtn').addEventListener('click', function(){
+  selectUserType('existing', this);
+});
+
+document.getElementById('newBtn').addEventListener('click', function(){
+  selectUserType('new', this);
+});
+
 document.getElementById('betaForm').addEventListener('submit', function(e){
- e.preventDefault();
- document.getElementById('enrollmentCard').style.display='none';
- document.getElementById('successScreen').style.display='block';
- window.scrollTo({top:0, behavior:'smooth'});
+  e.preventDefault();
+  document.querySelector('.hero').style.display = 'none';
+  document.getElementById('enrollmentCard').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 </script>
 </body>
