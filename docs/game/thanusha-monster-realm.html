@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanusha & The Monster Realm — by ThanuGames</title>
+<style>
+  :root{
+    --neon:#7df9ff;
+    --pink:#ff4f9a;
+    --gold:#ffd166;
+    --purple:#7b2ff7;
+    --dark:#0a0c1b;
+    --panel:#13182f;
+  }
+  *{box-sizing:border-box;}
+  html,body{
+    margin:0;
+    height:100%;
+    background:var(--dark);
+    color:#fff;
+    font-family:'Trebuchet MS','Segoe UI',sans-serif;
+    overflow:hidden;
+    user-select:none;
+  }
+  #app{
+    position:relative;
+    width:100%;
+    height:100vh;
+  }
+  .screen{
+    position:absolute;
+    inset:0;
+    display:none;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .screen.active{ display:flex; }
+
+  /* ---------- shared starfield bg ---------- */
+  .stars{
+    position:absolute; inset:0; z-index:0;
+    background:radial-gradient(circle at 20% 30%, #1a1f40 0%, var(--dark) 60%);
+  }
+  .star{
+    position:absolute;
+    width:2px;height:2px;
+    background:#fff;
+    border-radius:50%;
+    opacity:0.7;
+    animation:twinkle 2.5s infinite ease-in-out;
+  }
+  @keyframes twinkle{ 0%,100%{opacity:0.2;} 50%{opacity:1;} }
+
+  /* ---------- ThanuGames splash ---------- */
+  #splash-screen .logo{
+    font-size:3rem;
+    font-weight:bold;
+    letter-spacing:3px;
+    color:var(--neon);
+    text-shadow:0 0 18px var(--neon), 0 0 40px var(--purple);
+    animation:logoIn 1.6s ease forwards;
+    opacity:0;
+    z-index:2;
+  }
+  @keyframes logoIn{
+    0%{opacity:0; transform:scale(0.6) translateY(20px);}
+    60%{opacity:1; transform:scale(1.08) translateY(0);}
+    100%{opacity:1; transform:scale(1);}
+  }
+  #splash-screen .tagline{
+    margin-top:10px;
+    color:#9aa3c9;
+    font-size:0.95rem;
+    letter-spacing:2px;
+    opacity:0;
+    animation:fadeIn 1s ease 1.4s forwards;
+    z-index:2;
+  }
+  #splash-screen .copyright{
+    position:absolute;
+    bottom:22px;
+    font-size:0.75rem;
+    color:#5b6390;
+    z-index:2;
+  }
+  @keyframes fadeIn{ to{opacity:1;} }
+
+  /* ---------- Intro story ---------- */
+  #story-screen{
+    text-align:center;
+    padding:30px;
+    z-index:2;
+  }
+  #story-art{
+    font-size:5rem;
+    margin-bottom:20px;
+    animation:floatArt 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 18px rgba(125,249,255,0.5));
+    z-index:2;
+  }
+  @keyframes floatArt{
+    0%,100%{ transform:translateY(0) rotate(-2deg); }
+    50%{ transform:translateY(-14px) rotate(2deg); }
+  }
+  #story-text{
+    max-width:640px;
+    font-size:1.25rem;
+    line-height:1.6;
+    min-height:90px;
+    color:#e7eaff;
+    text-shadow:0 2px 6px rgba(0,0,0,0.6);
+    z-index:2;
+  }
+  #story-text .cursor{
+    display:inline-block;
+    width:8px;height:1.1em;
+    background:var(--neon);
+    margin-left:4px;
+    animation:blink 0.8s steps(1) infinite;
+    vertical-align:middle;
+  }
+  @keyframes blink{ 50%{opacity:0;} }
+  .story-controls{
+    margin-top:26px;
+    display:flex;
+    gap:14px;
+    z-index:2;
+  }
+
+  /* ---------- generic buttons ---------- */
+  .btn{
+    border:none;
+    border-radius:30px;
+    padding:13px 28px;
+    font-weight:bold;
+    font-size:1rem;
+    cursor:pointer;
+    color:#0a0c1b;
+    background:linear-gradient(135deg,var(--gold),#ffb703);
+    box-shadow:0 5px 0 rgba(0,0,0,0.35);
+    transition:transform .15s, box-shadow .15s;
+  }
+  .btn:hover{ transform:translateY(-2px) scale(1.04); }
+  .btn:active{ transform:translateY(1px); box-shadow:0 2px 0 rgba(0,0,0,0.35);}
+  .btn.alt{ background:linear-gradient(135deg,var(--neon),#3ad6ff); }
+  .btn.pink{ background:linear-gradient(135deg,var(--pink),#c9184a); color:#fff; }
+  .btn.ghost{
+    background:transparent;
+    border:2px solid #4a5180;
+    color:#cfd3f0;
+    box-shadow:none;
+  }
+  .btn:disabled{
+    opacity:0.4;
+    cursor:not-allowed;
+    transform:none !important;
+  }
+
+  /* ---------- Main Menu ---------- */
+  #menu-screen{ z-index:2; text-align:center; }
+  #menu-screen h1{
+    font-size:2.2rem;
+    color:var(--gold);
+    text-shadow:0 0 16px rgba(255,209,102,0.6);
+    margin-bottom:4px;
+  }
+  #menu-screen .sub{
+    color:#9aa3c9;
+    margin-bottom:26px;
+  }
+  #menu-buttons{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    width:260px;
+  }
+
+  /* ---------- Costume / Gadget select ---------- */
+  .select-screen{ z-index:2; padding:20px; width:100%; max-width:760px; text-align:center; }
+  .select-screen h2{
+    color:var(--neon);
+    text-shadow:0 0 12px rgba(125,249,255,0.5);
+    margin-bottom:6px;
+  }
+  .select-screen .desc{ color:#9aa3c9; margin-bottom:20px; font-size:0.9rem; }
+  .grid-select{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    gap:16px;
+    margin-bottom:24px;
+    max-height:50vh;
+    overflow-y:auto;
+    padding:6px;
+  }
+  .item-card{
+    background:var(--panel);
+    border:3px solid #2a3160;
+    border-radius:16px;
+    padding:14px 10px;
+    cursor:pointer;
+    transition:transform .15s, border-color .2s;
+    position:relative;
+  }
+  .item-card:hover{ transform:translateY(-3px); }
+  .item-card.selected{
+    border-color:var(--gold);
+    box-shadow:0 0 18px rgba(255,209,102,0.45);
+  }
+  .item-card.locked{
+    opacity:0.45;
+    cursor:not-allowed;
+  }
+  .item-card .icon{ font-size:2.4rem; margin-bottom:6px; }
+  .item-card .name{ font-weight:bold; font-size:0.95rem; }
+  .item-card .info{ font-size:0.75rem; color:#9aa3c9; margin-top:4px; }
+  .item-card .lock-tag{
+    position:absolute; top:6px; right:8px;
+    font-size:0.7rem;
+    background:#000a; padding:2px 6px; border-radius:8px;
+  }
+
+  /* ---------- HUD / Game screen ---------- */
+  #game-screen{ z-index:2; }
+  #hud{
+    position:absolute;
+    top:10px; left:0; right:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 16px;
+    z-index:10;
+  }
+  .hud-box{
+    background:rgba(10,12,27,0.7);
+    border:2px solid #2a3160;
+    border-radius:14px;
+    padding:6px 12px;
+    font-size:0.85rem;
+    font-weight:bold;
+  }
+  #hp-bar-wrap, #boss-bar-wrap{
+    width:140px; height:12px;
+    background:#222842;
+    border-radius:8px;
+    overflow:hidden;
+    margin-top:4px;
+  }
+  #hp-bar{ height:100%; width:100%; background:linear-gradient(90deg,#06d6a0,#04b886); transition:width .25s; }
+  #boss-bar{ height:100%; width:100%; background:linear-gradient(90deg,var(--pink),#c9184a); transition:width .25s; }
+  #boss-hud{ display:none; text-align:center; }
+
+  #gadget-indicator{
+    position:absolute;
+    bottom:14px; left:14px;
+    background:rgba(10,12,27,0.7);
+    border:2px solid #2a3160;
+    border-radius:14px;
+    padding:8px 12px;
+    font-size:0.8rem;
+    z-index:10;
+  }
+  #level-banner{
+    position:absolute;
+    top:48%; left:50%;
+    transform:translate(-50%,-50%) scale(0);
+    z-index:15;
+    text-align:center;
+    background:rgba(0,0,0,0.7);
+    padding:24px 40px;
+    border-radius:20px;
+    transition:transform .35s cubic-bezier(.34,1.56,.64,1);
+  }
+  #level-banner.show{ transform:translate(-50%,-50%) scale(1); }
+  #level-banner h2{ margin:0 0 8px; color:var(--gold); font-size:1.8rem; }
+  #level-banner p{ margin:0; color:#cfd3f0; font-size:0.95rem; max-width:380px; }
+
+  canvas{
+    display:block;
+    background:radial-gradient(circle at 50% 20%, #161c3c, #060814 80%);
+    border-radius:0;
+  }
+
+  #mobile-controls{
+    position:absolute;
+    bottom:16px; right:16px;
+    z-index:10;
+    display:none;
+    gap:8px;
+  }
+  #mobile-controls.show{ display:flex; }
+  .mctrl-btn{
+    width:54px;height:54px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    border:2px solid rgba(255,255,255,0.3);
+    color:#fff;
+    font-size:1.3rem;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- End / win / lose ---------- */
+  .overlay-screen{
+    z-index:30;
+    text-align:center;
+  }
+  .overlay-screen .icon{ font-size:4.5rem; margin-bottom:10px; animation:floatArt 2.4s ease-in-out infinite; }
+  .overlay-screen h2{ font-size:2rem; margin:0 0 8px; }
+  .overlay-screen p{ color:#cfd3f0; max-width:420px; margin:0 auto 18px; }
+
+  #toast{
+    position:fixed;
+    top:16px; left:50%;
+    transform:translateX(-50%) translateY(-40px);
+    background:var(--panel);
+    border:2px solid var(--gold);
+    border-radius:14px;
+    padding:10px 18px;
+    font-size:0.9rem;
+    z-index:100;
+    opacity:0;
+    transition:transform .35s, opacity .35s;
+  }
+  #toast.show{ transform:translateX(-50%) translateY(0); opacity:1; }
+
+  .confetti-piece{
+    position:fixed; top:-12px; width:10px;height:14px;
+    z-index:100; pointer-events:none;
+    animation:fall linear forwards;
+  }
+  @keyframes fall{ to{ transform:translateY(110vh) rotate(720deg); opacity:0.3; } }
+
+  footer.copyright{
+    position:absolute;
+    bottom:6px; left:0; right:0;
+    text-align:center;
+    font-size:0.7rem;
+    color:#4a5180;
+    z-index:5;
+  }
+
+  #mute-btn{
+    position:fixed;
+    top:14px; right:14px;
+    z-index:200;
+    width:44px; height:44px;
+    border-radius:50%;
+    border:2px solid #2a3160;
+    background:rgba(10,12,27,0.75);
+    color:#fff;
+    font-size:1.2rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:transform .15s, background .2s;
+  }
+  #mute-btn:hover{ transform:scale(1.08); }
+  #mute-btn.muted{ opacity:0.55; }
+
+  @media (max-width:600px){
+    #menu-screen h1{ font-size:1.6rem; }
+    #story-text{ font-size:1rem; }
+    #mobile-controls.show{ display:flex; }
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ===================== SPLASH ===================== -->
+  <div class="screen active" id="splash-screen">
+    <div class="stars" id="stars-splash"></div>
+    <div class="logo">⚡ ThanuGames ⚡</div>
+    <div class="tagline">PRESENTS</div>
+    <div class="copyright">© ThanuGames — All Rights Reserved</div>
+  </div>
+
+  <!-- ===================== INTRO STORY ===================== -->
+  <div class="screen" id="story-screen">
+    <div class="stars"></div>
+    <div id="story-art">🌍</div>
+    <div id="story-text"><span id="story-line"></span><span class="cursor"></span></div>
+    <div class="story-controls">
+      <button class="btn ghost" id="skip-story-btn">Skip ⏭️</button>
+      <button class="btn alt" id="next-line-btn">Continue ▶️</button>
+    </div>
+  </div>
+
+  <!-- ===================== MAIN MENU ===================== -->
+  <div class="screen" id="menu-screen">
+    <div class="stars"></div>
+    <h1>🦸‍♀️ Thanusha & The Monster Realm</h1>
+    <div class="sub">10 Levels • Save The World</div>
+    <div id="menu-buttons">
+      <button class="btn" id="play-btn">▶️ Play</button>
+      <button class="btn alt" id="costume-btn">👗 Costumes</button>
+      <button class="btn alt" id="gadget-btn">🎒 Gadgets</button>
+      <button class="btn ghost" id="howto-btn">❓ How To Play</button>
+      <button class="btn ghost" id="reset-progress-btn">♻️ Reset Progress</button>
+    </div>
+    <footer class="copyright">© ThanuGames — Thanusha & The Monster Realm</footer>
+  </div>
+
+  <!-- ===================== HOW TO PLAY ===================== -->
+  <div class="screen" id="howto-screen">
+    <div class="stars"></div>
+    <div class="select-screen">
+      <h2>❓ How To Play</h2>
+      <div class="desc" style="text-align:left; line-height:1.7; max-width:480px; margin:0 auto 20px;">
+        🕹️ Move: <b>Arrow Keys / WASD</b> (or on-screen buttons on mobile)<br>
+        ⚔️ Attack: <b>Spacebar</b> or tap the ⚔️ button<br>
+        🧪 Use Gadget: <b>G key</b> or tap the gadget icon<br>
+        💖 Avoid monster touches — you have 3 hearts per level<br>
+        👑 Defeat the Boss at the end of each level to advance<br>
+        🏆 Beat all 10 levels to save the world and unlock everything!
+      </div>
+      <button class="btn" id="howto-back-btn">⬅️ Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- ===================== COSTUME SELECT ===================== -->
+  <div class="screen" id="costume-screen">
+    <div class="stars"></div>
+    <div class="select-screen">
+      <h2>👗 Choose Your Costume</h2>
+      <div class="desc">Unlock new looks by clearing levels!</div>
+      <div class="grid-select" id="costume-grid"></div>
+      <button class="btn" id="costume-back-btn">⬅️ Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- ===================== GADGET SELECT ===================== -->
+  <div class="screen" id="gadget-screen">
+    <div class="stars"></div>
+    <div class="select-screen">
+      <h2>🎒 Choose Your Gadget</h2>
+      <div class="desc">Pick one special power to bring into battle!</div>
+      <div class="grid-select" id="gadget-grid"></div>
+      <button class="btn" id="gadget-back-btn">⬅️ Back to Menu</button>
+    </div>
+  </div>
+
+  <!-- ===================== GAME SCREEN ===================== -->
+  <div class="screen" id="game-screen">
+    <div id="hud">
+      <div class="hud-box">
+        🌟 Level <span id="hud-level">1</span>/10<br>
+        💖 <div id="hp-bar-wrap"><div id="hp-bar"></div></div>
+      </div>
+      <div class="hud-box" id="boss-hud">
+        👑 BOSS<br>
+        <div id="boss-bar-wrap"><div id="boss-bar"></div></div>
+      </div>
+      <div class="hud-box">
+        ⭐ Score: <span id="hud-score">0</span>
+      </div>
+    </div>
+    <canvas id="game-canvas"></canvas>
+    <div id="gadget-indicator">🎒 <span id="gadget-name">None</span> — <span id="gadget-status">Ready</span></div>
+    <div id="level-banner">
+      <h2 id="banner-title">Level 1</h2>
+      <p id="banner-desc">Here we go!</p>
+    </div>
+    <div id="mobile-controls">
+      <button class="mctrl-btn" id="mc-attack">⚔️</button>
+      <button class="mctrl-btn" id="mc-gadget">🎒</button>
+    </div>
+  </div>
+
+  <!-- ===================== LEVEL WIN ===================== -->
+  <div class="screen overlay-screen" id="levelwin-screen">
+    <div class="stars"></div>
+    <div class="icon">🎉</div>
+    <h2 id="levelwin-title">Level Complete!</h2>
+    <p id="levelwin-desc">You defeated the boss!</p>
+    <div style="display:flex; gap:14px;">
+      <button class="btn" id="next-level-btn">▶️ Next Level</button>
+      <button class="btn ghost" id="levelwin-menu-btn">🏠 Menu</button>
+    </div>
+  </div>
+
+  <!-- ===================== GAME OVER ===================== -->
+  <div class="screen overlay-screen" id="gameover-screen">
+    <div class="stars"></div>
+    <div class="icon">💫</div>
+    <h2>Don't Give Up!</h2>
+    <p>The monsters got the better of you this time. Try again, hero!</p>
+    <div style="display:flex; gap:14px;">
+      <button class="btn" id="retry-btn">🔄 Retry Level</button>
+      <button class="btn ghost" id="gameover-menu-btn">🏠 Menu</button>
+    </div>
+  </div>
+
+  <!-- ===================== FINAL VICTORY ===================== -->
+  <div class="screen overlay-screen" id="finalwin-screen">
+    <div class="stars"></div>
+    <div class="icon">🌍✨</div>
+    <h2>The World Is Saved!</h2>
+    <p id="final-text">Thanusha has defeated the Shadow King and brought peace back to the world. All heroes, big and small, will remember her courage forever!</p>
+    <div style="display:flex; gap:14px;">
+      <button class="btn" id="finalwin-menu-btn">🏠 Menu</button>
+    </div>
+    <footer class="copyright">© ThanuGames — Thanusha & The Monster Realm</footer>
+  </div>
+
+  <div id="toast"></div>
+  <button id="mute-btn" title="Mute / Unmute">🔊</button>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================================================
+   ThanuGames — Thanusha & The Monster Realm
+   Copyright © ThanuGames. All Rights Reserved.
+   ============================================================ */
+
+const STORAGE_KEY = "thanugames_save_v1";
+
+/* ---------------- Data: Costumes, Gadgets, Levels ---------------- */
+
+const COSTUMES = [
+  { id:'classic', name:'Classic Hero', icon:'🦸‍♀️', unlockLevel:0 },
+  { id:'ninja',   name:'Shadow Ninja', icon:'🥷', unlockLevel:2 },
+  { id:'princess',name:'Star Princess', icon:'👸', unlockLevel:4 },
+  { id:'astro',   name:'Astro Ranger', icon:'👩‍🚀', unlockLevel:6 },
+  { id:'fairy',   name:'Forest Fairy', icon:'🧚‍♀️', unlockLevel:8 },
+  { id:'champion',name:'World Champion', icon:'🏆', unlockLevel:10 },
+];
+
+const GADGETS = [
+  { id:'shield', name:'Magic Shield', icon:'🛡️', unlockLevel:0, desc:'Blocks all damage for 3s', cooldown:8 },
+  { id:'boots',  name:'Speed Boots', icon:'👟', unlockLevel:1, desc:'Super speed dash for 2s', cooldown:6 },
+  { id:'blaster',name:'Star Blaster', icon:'✨', unlockLevel:3, desc:'Fires a power shot', cooldown:5 },
+  { id:'freeze', name:'Time Freezer', icon:'⏳', unlockLevel:5, desc:'Freezes monsters for 3s', cooldown:10 },
+  { id:'heal',   name:'Healing Light', icon:'💖', unlockLevel:7, desc:'Restores 1 heart', cooldown:12 },
+];
+
+const STORY_LINES = [
+  "Long ago, the world was full of laughter, color, and peace... 🌍",
+  "But one dark night, the Shadow King unleashed his monsters from the Realm Below... 👹",
+  "Forests turned grey. Cities grew quiet. Hope began to fade. 🌑",
+  "But in a small town, a brilliant 9-year-old girl named Thanusha discovered she had a gift...",
+  "She was brave. She was clever. And she refused to let darkness win. 💪",
+  "Armed with courage, clever gadgets, and a heart full of light, she set off on a journey...",
+  "Through 10 dangerous realms, facing monster after monster...",
+  "...all the way to the Shadow King himself.",
+  "This is her story. Will YOU help her save the world? ✨",
+];
+
+const LEVELS = [
+  { n:1, name:"Whispering Woods", enemyEmoji:"🐍", bossEmoji:"🐺", bossName:"Howler Fang", enemyCount:5, enemySpeed:1.0, bossHP:30, bossSpeed:1.1, intro:"Strange snakes slither through the woods. Clear the path!" },
+  { n:2, name:"Murky Swamp", enemyEmoji:"🐸", bossEmoji:"🐊", bossName:"Swamp Maw", enemyCount:6, enemySpeed:1.1, bossHP:40, bossSpeed:1.1, intro:"The swamp hides ancient dangers beneath its waters." },
+  { n:3, name:"Crystal Caves", enemyEmoji:"🦇", bossEmoji:"🕷️", bossName:"Webspinner Queen", enemyCount:7, enemySpeed:1.2, bossHP:50, bossSpeed:1.2, intro:"Bats screech in the dark... something bigger lurks deeper." },
+  { n:4, name:"Frozen Peaks", enemyEmoji:"❄️", bossEmoji:"🐻‍❄️", bossName:"Frostclaw", enemyCount:8, enemySpeed:1.2, bossHP:60, bossSpeed:1.3, intro:"Icy winds bite. Frostclaw guards the mountain pass." },
+  { n:5, name:"Volcanic Ridge", enemyEmoji:"🔥", bossEmoji:"🐲", bossName:"Emberwing", enemyCount:8, enemySpeed:1.3, bossHP:70, bossSpeed:1.3, intro:"The ground burns. A fire dragon awaits at the peak." },
+  { n:6, name:"Haunted Ruins", enemyEmoji:"👻", bossEmoji:"💀", bossName:"Bonelord", enemyCount:9, enemySpeed:1.3, bossHP:80, bossSpeed:1.4, intro:"Ghosts drift among broken statues of forgotten kings." },
+  { n:7, name:"Storm Isles", enemyEmoji:"⚡", bossEmoji:"🦑", bossName:"Krakenshade", enemyCount:9, enemySpeed:1.4, bossHP:95, bossSpeed:1.4, intro:"Lightning splits the sky above the stormy seas." },
+  { n:8, name:"Shadow Tower", enemyEmoji:"🦂", bossEmoji:"🧟", bossName:"The Hollow One", enemyCount:10, enemySpeed:1.4, bossHP:110, bossSpeed:1.5, intro:"The tower walls pulse with dark energy." },
+  { n:9, name:"Void Gateway", enemyEmoji:"👾", bossEmoji:"👁️", bossName:"The Watcher", enemyCount:10, enemySpeed:1.5, bossHP:130, bossSpeed:1.5, intro:"Reality bends here. The final gate is near." },
+  { n:10, name:"Shadow King's Throne", enemyEmoji:"😈", bossEmoji:"👹", bossName:"The Shadow King", enemyCount:12, enemySpeed:1.6, bossHP:160, bossSpeed:1.6, intro:"This is it. Save the world, Thanusha!" },
+];
+
+/* ---------------- Save Data ---------------- */
+let save = loadSave();
+function loadSave(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return { maxLevelCleared:0, costume:'classic', gadget:'shield', score:0 };
+}
+function persist(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(save)); }catch(e){}
+}
+
+/* ============================================================
+   SOUND ENGINE — fully synthesized, no external audio files
+   ============================================================ */
+const SoundEngine = (function(){
+  let actx = null;
+  let muted = false;
+  let masterGain = null;
+  let musicNodes = [];
+  let musicTimer = null;
+  let currentMusicMode = null;
+
+  function ensureCtx(){
+    if(!actx){
+      actx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = actx.createGain();
+      masterGain.gain.value = 0.55;
+      masterGain.connect(actx.destination);
+    }
+    if(actx.state === 'suspended') actx.resume();
+    return actx;
+  }
+
+  function blip(freq, dur, type, vol, glideTo){
+    if(muted) return;
+    const ctx = ensureCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    if(glideTo){
+      osc.frequency.exponentialRampToValueAtTime(glideTo, ctx.currentTime + dur);
+    }
+    gain.gain.setValueAtTime(vol||0.3, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start();
+    osc.stop(ctx.currentTime + dur);
+  }
+
+  function noiseBurst(dur, vol){
+    if(muted) return;
+    const ctx = ensureCtx();
+    const bufferSize = ctx.sampleRate * dur;
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for(let i=0;i<bufferSize;i++){ data[i] = (Math.random()*2-1) * (1 - i/bufferSize); }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+    const gain = ctx.createGain();
+    gain.gain.value = vol||0.25;
+    noise.connect(gain);
+    gain.connect(masterGain);
+    noise.start();
+  }
+
+  // ---- SFX library ----
+  const sfx = {
+    click: ()=> blip(520, 0.09, 'triangle', 0.25, 700),
+    back: ()=> blip(380, 0.09, 'triangle', 0.2, 260),
+    typewriter: ()=> blip(900+Math.random()*200, 0.02, 'square', 0.04),
+    attack: ()=> { blip(220,0.08,'sawtooth',0.25,80); },
+    hit: ()=> { noiseBurst(0.12, 0.18); blip(140,0.1,'square',0.2,60); },
+    gadget: ()=> { blip(300,0.2,'sine',0.3,900); blip(450,0.25,'triangle',0.2,1200); },
+    heal: ()=> { blip(500,0.15,'sine',0.25,900); blip(700,0.2,'sine',0.2,1100); },
+    enemyDown: ()=> blip(600,0.12,'square',0.2,200),
+    bossHit: ()=> { noiseBurst(0.1,0.2); blip(180,0.12,'sawtooth',0.25,90); },
+    bossAppear: ()=> { blip(90,0.6,'sawtooth',0.35,60); blip(70,0.8,'square',0.3,40); },
+    bossDown: ()=> {
+      [0,0.12,0.24,0.36].forEach((t,i)=> setTimeout(()=>blip(300+i*120,0.25,'triangle',0.3,500+i*150), t*1000));
+    },
+    levelWin: ()=> {
+      [523,659,784,1046].forEach((f,i)=> setTimeout(()=>blip(f,0.3,'triangle',0.28), i*130));
+    },
+    gameOver: ()=> {
+      [400,320,260,180].forEach((f,i)=> setTimeout(()=>blip(f,0.35,'sawtooth',0.25), i*150));
+    },
+    finalWin: ()=> {
+      [523,659,784,1046,1318].forEach((f,i)=> setTimeout(()=>blip(f,0.4,'triangle',0.3), i*150));
+    },
+    playerHurt: ()=> { noiseBurst(0.08,0.2); blip(160,0.15,'sawtooth',0.22,90); },
+    unlock: ()=> { blip(700,0.18,'sine',0.25,1100); setTimeout(()=>blip(900,0.2,'sine',0.22,1300),120); }
+  };
+
+  // ---- Background music (procedural loops) ----
+  const SCALE_MENU = [261.6,293.7,329.6,392.0,440.0,329.6,293.7];
+  const SCALE_GAME = [196.0,220.0,246.9,261.6,293.7,261.6,246.9,220.0];
+  const SCALE_BOSS = [146.8,164.8,174.6,196.0,164.8,146.8,138.6,130.8];
+
+  function stopMusic(){
+    if(musicTimer){ clearInterval(musicTimer); musicTimer = null; }
+    currentMusicMode = null;
+  }
+
+  function playMusicNote(freq, dur, vol, type){
+    if(muted) return;
+    const ctx = ensureCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+    osc.connect(gain);
+    gain.connect(masterGain);
+    osc.start();
+    osc.stop(ctx.currentTime + dur + 0.05);
+  }
+
+  function startMusic(mode){
+    if(currentMusicMode === mode) return;
+    stopMusic();
+    currentMusicMode = mode;
+    let scale = SCALE_MENU, noteDur = 420, vol = 0.07, type='sine', bassEvery=4;
+    if(mode === 'game'){ scale = SCALE_GAME; noteDur = 300; vol=0.065; type='triangle'; }
+    if(mode === 'boss'){ scale = SCALE_BOSS; noteDur = 220; vol=0.08; type='sawtooth'; }
+
+    let i = 0;
+    musicTimer = setInterval(()=>{
+      if(muted) return;
+      const freq = scale[i % scale.length];
+      playMusicNote(freq, noteDur/1000*1.4, vol, type);
+      if(i % bassEvery === 0){
+        playMusicNote(freq/2, noteDur/1000*1.6, vol*0.8, 'sine');
+      }
+      i++;
+    }, noteDur);
+  }
+
+  function setMuted(val){
+    muted = val;
+    if(masterGain) masterGain.gain.value = muted ? 0 : 0.55;
+  }
+
+  return {
+    ensureCtx, sfx, startMusic, stopMusic,
+    isMuted: ()=>muted,
+    setMuted
+  };
+})();
+
+const muteBtn = document.getElementById('mute-btn');
+muteBtn.addEventListener('click', ()=>{
+  SoundEngine.ensureCtx();
+  const newState = !SoundEngine.isMuted();
+  SoundEngine.setMuted(newState);
+  muteBtn.textContent = newState ? '🔇' : '🔊';
+  muteBtn.classList.toggle('muted', newState);
+});
+// unlock audio context on first interaction (mobile requirement)
+['click','touchstart','keydown'].forEach(evt=>{
+  window.addEventListener(evt, ()=> SoundEngine.ensureCtx(), { once:true });
+});
+
+/* ---------------- Screen Management ---------------- */
+const screens = {};
+document.querySelectorAll('.screen').forEach(s => screens[s.id] = s);
+function showScreen(id){
+  Object.values(screens).forEach(s => s.classList.remove('active'));
+  screens[id].classList.add('active');
+}
+
+/* ---------------- Starfield generator ---------------- */
+function fillStars(container){
+  if(!container || container.childElementCount) return;
+  for(let i=0;i<60;i++){
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = Math.random()*100+'%';
+    star.style.top = Math.random()*100+'%';
+    star.style.animationDelay = (Math.random()*2.5)+'s';
+    container.appendChild(star);
+  }
+}
+document.querySelectorAll('.stars').forEach(fillStars);
+
+/* ---------------- Toast ---------------- */
+let toastTimer;
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2200);
+}
+
+/* ---------------- Confetti ---------------- */
+function launchConfetti(count, colors){
+  count = count || 40;
+  colors = colors || ['#ffd166','#7df9ff','#ff4f9a','#06d6a0'];
+  for(let i=0;i<count;i++){
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random()*100+'vw';
+    piece.style.background = colors[Math.floor(Math.random()*colors.length)];
+    piece.style.animationDuration = (1.8+Math.random()*1.8)+'s';
+    piece.style.borderRadius = Math.random()>0.5 ? '50%':'2px';
+    document.body.appendChild(piece);
+    setTimeout(()=>piece.remove(), 4000);
+  }
+}
+
+/* ============================================================
+   SPLASH -> STORY
+   ============================================================ */
+setTimeout(()=>{
+  showScreen('story-screen');
+  SoundEngine.startMusic('menu');
+  startStory();
+}, 2600);
+
+let storyIdx = 0;
+let storyTyping = false;
+function startStory(){
+  storyIdx = 0;
+  typeLine(STORY_LINES[0]);
+}
+function typeLine(text){
+  storyTyping = true;
+  const el = document.getElementById('story-line');
+  el.textContent = '';
+  let i = 0;
+  const speed = 28;
+  function step(){
+    if(i < text.length){
+      el.textContent += text.charAt(i);
+      if(text.charAt(i) !== ' ') SoundEngine.sfx.typewriter();
+      i++;
+      setTimeout(step, speed);
+    } else {
+      storyTyping = false;
+    }
+  }
+  step();
+}
+document.getElementById('next-line-btn').addEventListener('click', ()=>{
+  if(storyTyping) return;
+  SoundEngine.sfx.click();
+  storyIdx++;
+  if(storyIdx >= STORY_LINES.length){
+    goToMenu();
+  } else {
+    typeLine(STORY_LINES[storyIdx]);
+  }
+});
+document.getElementById('skip-story-btn').addEventListener('click', ()=>{
+  SoundEngine.sfx.back();
+  goToMenu();
+});
+
+function goToMenu(){
+  showScreen('menu-screen');
+  SoundEngine.startMusic('menu');
+  renderMenuState();
+}
+
+/* ============================================================
+   MAIN MENU
+   ============================================================ */
+function renderMenuState(){
+  // nothing dynamic needed right now beyond screen swap
+}
+document.getElementById('play-btn').addEventListener('click', ()=>{
+  SoundEngine.sfx.click();
+  startLevel(Math.min(save.maxLevelCleared+1, 10));
+});
+document.getElementById('costume-btn').addEventListener('click', ()=>{
+  SoundEngine.sfx.click();
+  renderCostumeGrid();
+  showScreen('costume-screen');
+});
+document.getElementById('gadget-btn').addEventListener('click', ()=>{
+  SoundEngine.sfx.click();
+  renderGadgetGrid();
+  showScreen('gadget-screen');
+});
+document.getElementById('howto-btn').addEventListener('click', ()=>{ SoundEngine.sfx.click(); showScreen('howto-screen'); });
+document.getElementById('howto-back-btn').addEventListener('click', ()=>{ SoundEngine.sfx.back(); showScreen('menu-screen'); });
+document.getElementById('costume-back-btn').addEventListener('click', ()=>{ SoundEngine.sfx.back(); showScreen('menu-screen'); });
+document.getElementById('gadget-back-btn').addEventListener('click', ()=>{ SoundEngine.sfx.back(); showScreen('menu-screen'); });
+document.getElementById('reset-progress-btn').addEventListener('click', ()=>{
+  SoundEngine.sfx.click();
+  if(confirm('Reset all progress, costumes, and gadgets?')){
+    save = { maxLevelCleared:0, costume:'classic', gadget:'shield', score:0 };
+    persist();
+    toast('Progress reset!');
+  }
+});
+
+/* ---------------- Costume Grid ---------------- */
+function renderCostumeGrid(){
+  const grid = document.getElementById('costume-grid');
+  grid.innerHTML = '';
+  COSTUMES.forEach(c=>{
+    const unlocked = save.maxLevelCleared >= c.unlockLevel;
+    const card = document.createElement('div');
+    card.className = 'item-card' + (unlocked? '' : ' locked') + (save.costume===c.id ? ' selected':'');
+    card.innerHTML = `<div class="icon">${c.icon}</div><div class="name">${c.name}</div>
+      <div class="info">${unlocked ? (save.costume===c.id?'Equipped':'Tap to equip') : 'Clear Lv.'+c.unlockLevel}</div>
+      ${unlocked?'':'<div class="lock-tag">🔒</div>'}`;
+    if(unlocked){
+      card.addEventListener('click', ()=>{
+        save.costume = c.id;
+        persist();
+        SoundEngine.sfx.unlock();
+        renderCostumeGrid();
+        toast(c.name + ' equipped!');
+      });
+    }
+    grid.appendChild(card);
+  });
+}
+
+/* ---------------- Gadget Grid ---------------- */
+function renderGadgetGrid(){
+  const grid = document.getElementById('gadget-grid');
+  grid.innerHTML = '';
+  GADGETS.forEach(g=>{
+    const unlocked = save.maxLevelCleared >= g.unlockLevel;
+    const card = document.createElement('div');
+    card.className = 'item-card' + (unlocked? '' : ' locked') + (save.gadget===g.id ? ' selected':'');
+    card.innerHTML = `<div class="icon">${g.icon}</div><div class="name">${g.name}</div>
+      <div class="info">${g.desc}</div>
+      <div class="info">${unlocked ? (save.gadget===g.id?'Equipped':'Tap to equip') : 'Clear Lv.'+g.unlockLevel}</div>
+      ${unlocked?'':'<div class="lock-tag">🔒</div>'}`;
+    if(unlocked){
+      card.addEventListener('click', ()=>{
+        save.gadget = g.id;
+        persist();
+        SoundEngine.sfx.unlock();
+        renderGadgetGrid();
+        toast(g.name + ' equipped!');
+      });
+    }
+    grid.appendChild(card);
+  });
+}
+
+/* ============================================================
+   GAME ENGINE
+   ============================================================ */
+const canvas = document.getElementById('game-canvas');
+const ctx = canvas.getContext('2d');
+let W = 0, H = 0;
+function resizeCanvas(){
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width = W;
+  canvas.height = H;
+}
+window.addEventListener('resize', resizeCanvas);
+
+let currentLevelIdx = 1;
+let player, enemies, projectiles, boss, score, hearts, keys, gadgetCooldownLeft, gadgetActiveTimer, gameLoopId, gamePaused;
+let bossSpawned = false;
+let levelActive = false;
+
+function getCostume(){ return COSTUMES.find(c=>c.id===save.costume) || COSTUMES[0]; }
+function getGadget(){ return GADGETS.find(g=>g.id===save.gadget) || GADGETS[0]; }
+
+function startLevel(levelNum){
+  currentLevelIdx = levelNum;
+  const lvl = LEVELS[levelNum-1];
+  resizeCanvas();
+  showScreen('game-screen');
+
+  player = { x:W/2, y:H/2, r:20, speed:3.2, dashTimer:0, shieldTimer:0, frozenEnemiesTimer:0 };
+  enemies = [];
+  projectiles = [];
+  boss = null;
+  bossSpawned = false;
+  score = save.score || 0;
+  hearts = 3;
+  keys = {};
+  gadgetCooldownLeft = 0;
+  gadgetActiveTimer = 0;
+  gamePaused = false;
+  levelActive = true;
+
+  for(let i=0;i<lvl.enemyCount;i++){
+    spawnEnemy(lvl);
+  }
+
+  document.getElementById('hud-level').textContent = levelNum;
+  document.getElementById('hud-score').textContent = score;
+  document.getElementById('boss-hud').style.display = 'none';
+  updateHpBar();
+  document.getElementById('gadget-name').textContent = getGadget().icon + ' ' + getGadget().name;
+  document.getElementById('gadget-status').textContent = 'Ready';
+
+  showLevelBanner('Level ' + levelNum + ': ' + lvl.name, lvl.intro);
+  SoundEngine.startMusic('game');
+
+  // mobile controls
+  if('ontouchstart' in window){
+    document.getElementById('mobile-controls').classList.add('show');
+  }
+
+  cancelAnimationFrame(gameLoopId);
+  lastTime = performance.now();
+  gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+function showLevelBanner(title, desc){
+  const banner = document.getElementById('level-banner');
+  document.getElementById('banner-title').textContent = title;
+  document.getElementById('banner-desc').textContent = desc;
+  banner.classList.add('show');
+  gamePaused = true;
+  setTimeout(()=>{
+    banner.classList.remove('show');
+    gamePaused = false;
+  }, 2200);
+}
+
+function spawnEnemy(lvl){
+  const side = Math.floor(Math.random()*4);
+  let x,y;
+  if(side===0){ x = -30; y = Math.random()*H; }
+  else if(side===1){ x = W+30; y = Math.random()*H; }
+  else if(side===2){ x = Math.random()*W; y = -30; }
+  else { x = Math.random()*W; y = H+30; }
+  enemies.push({ x, y, r:16, speed:lvl.enemySpeed*0.7, emoji:lvl.enemyEmoji, hp:2 });
+}
+
+function spawnBoss(lvl){
+  boss = {
+    x:W/2, y:-80, r:34,
+    speed:lvl.bossSpeed*0.55,
+    hp:lvl.bossHP, maxHp:lvl.bossHP,
+    emoji:lvl.bossEmoji, name:lvl.bossName,
+    attackCooldown:0
+  };
+  document.getElementById('boss-hud').style.display = 'block';
+  updateBossBar();
+  toast('👑 ' + lvl.bossName + ' appears!');
+  SoundEngine.sfx.bossAppear();
+  SoundEngine.startMusic('boss');
+}
+
+/* ---------------- Input ---------------- */
+window.addEventListener('keydown', e=>{
+  keys[e.key.toLowerCase()] = true;
+  if(e.key===' '){ attack(); e.preventDefault(); }
+  if(e.key.toLowerCase()==='g'){ useGadget(); }
+});
+window.addEventListener('keyup', e=>{ keys[e.key.toLowerCase()] = false; });
+
+document.getElementById('mc-attack').addEventListener('click', attack);
+document.getElementById('mc-gadget').addEventListener('click', useGadget);
+
+// simple touch joystick-ish: drag anywhere on canvas to move toward point
+let touchTarget = null;
+canvas.addEventListener('touchstart', e=>{
+  const t = e.touches[0];
+  touchTarget = { x:t.clientX, y:t.clientY };
+});
+canvas.addEventListener('touchmove', e=>{
+  const t = e.touches[0];
+  touchTarget = { x:t.clientX, y:t.clientY };
+  e.preventDefault();
+}, {passive:false});
+canvas.addEventListener('touchend', ()=>{ touchTarget = null; });
+
+function attack(){
+  if(!levelActive || gamePaused) return;
+  SoundEngine.sfx.attack();
+  // melee swipe: damage anything within radius
+  const range = 60;
+  let hitSomething = false;
+  enemies.forEach(en=>{
+    const d = Math.hypot(en.x-player.x, en.y-player.y);
+    if(d < range){
+      en.hp -= 1; en.hitFlash = 8; hitSomething = true;
+      if(en.hp<=0) SoundEngine.sfx.enemyDown();
+    }
+  });
+  if(boss){
+    const d = Math.hypot(boss.x-player.x, boss.y-player.y);
+    if(d < range + boss.r){
+      boss.hp -= 3; boss.hitFlash = 8; updateBossBar();
+      hitSomething = true;
+      SoundEngine.sfx.bossHit();
+    }
+  }
+  if(hitSomething && !boss) SoundEngine.sfx.hit();
+  player.attackFlash = 10;
+}
+
+function useGadget(){
+  if(!levelActive || gamePaused) return;
+  if(gadgetCooldownLeft > 0) return;
+  const g = getGadget();
+  gadgetCooldownLeft = g.cooldown;
+  document.getElementById('gadget-status').textContent = 'Cooldown';
+
+  if(g.id === 'shield'){ player.shieldTimer = 3; toast('🛡️ Shield Up!'); SoundEngine.sfx.gadget(); }
+  else if(g.id === 'boots'){ player.dashTimer = 2; toast('👟 Speed Boost!'); SoundEngine.sfx.gadget(); }
+  else if(g.id === 'blaster'){
+    projectiles.push({ x:player.x, y:player.y, dx:0, dy:-1, speed:7, r:8, life:90 });
+    // aim roughly at nearest target
+    const target = boss || enemies[0];
+    if(target){
+      const dx = target.x-player.x, dy = target.y-player.y;
+      const len = Math.hypot(dx,dy)||1;
+      projectiles[projectiles.length-1].dx = dx/len;
+      projectiles[projectiles.length-1].dy = dy/len;
+    }
+    toast('✨ Star Blaster fired!');
+    SoundEngine.sfx.gadget();
+  }
+  else if(g.id === 'freeze'){ player.frozenEnemiesTimer = 3; toast('⏳ Time Frozen!'); SoundEngine.sfx.gadget(); }
+  else if(g.id === 'heal'){ hearts = Math.min(3, hearts+1); updateHpBar(); toast('💖 Healed!'); SoundEngine.sfx.heal(); }
+}
+
+/* ---------------- HUD updates ---------------- */
+function updateHpBar(){
+  document.getElementById('hp-bar').style.width = (hearts/3*100)+'%';
+}
+function updateBossBar(){
+  if(!boss) return;
+  document.getElementById('boss-bar').style.width = Math.max(boss.hp,0)/boss.maxHp*100 + '%';
+}
+
+/* ---------------- Game Loop ---------------- */
+let lastTime = 0;
+function gameLoop(ts){
+  const dt = Math.min((ts-lastTime)/1000, 0.05);
+  lastTime = ts;
+  if(!gamePaused) update(dt);
+  render();
+  if(levelActive) gameLoopId = requestAnimationFrame(gameLoop);
+}
+
+function update(dt){
+  // cooldowns
+  if(gadgetCooldownLeft > 0){
+    gadgetCooldownLeft -= dt;
+    if(gadgetCooldownLeft <= 0){
+      gadgetCooldownLeft = 0;
+      document.getElementById('gadget-status').textContent = 'Ready';
+    }
+  }
+  if(player.shieldTimer > 0) player.shieldTimer -= dt;
+  if(player.dashTimer > 0) player.dashTimer -= dt;
+  if(player.frozenEnemiesTimer > 0) player.frozenEnemiesTimer -= dt;
+
+  // movement
+  let speed = player.speed * (player.dashTimer>0 ? 2.2 : 1);
+  let mvx=0, mvy=0;
+  if(keys['arrowup']||keys['w']) mvy -= 1;
+  if(keys['arrowdown']||keys['s']) mvy += 1;
+  if(keys['arrowleft']||keys['a']) mvx -= 1;
+  if(keys['arrowright']||keys['d']) mvx += 1;
+
+  if(touchTarget){
+    const dx = touchTarget.x - player.x, dy = touchTarget.y - player.y;
+    const len = Math.hypot(dx,dy);
+    if(len > 4){ mvx = dx/len; mvy = dy/len; }
+  }
+
+  const len = Math.hypot(mvx,mvy);
+  if(len > 0){
+    player.x += (mvx/len)*speed*60*dt;
+    player.y += (mvy/len)*speed*60*dt;
+  }
+  player.x = Math.max(player.r, Math.min(W-player.r, player.x));
+  player.y = Math.max(player.r, Math.min(H-player.r, player.y));
+
+  if(player.attackFlash>0) player.attackFlash--;
+
+  const frozen = player.frozenEnemiesTimer > 0;
+
+  // enemies
+  enemies.forEach(en=>{
+    if(!frozen){
+      const dx = player.x-en.x, dy = player.y-en.y;
+      const d = Math.hypot(dx,dy)||1;
+      en.x += (dx/d)*en.speed*60*dt;
+      en.y += (dy/d)*en.speed*60*dt;
+    }
+    if(en.hitFlash>0) en.hitFlash--;
+    const d2 = Math.hypot(player.x-en.x, player.y-en.y);
+    if(d2 < player.r+en.r-6 && player.shieldTimer<=0){
+      en.x -= (player.x-en.x)*0.3;
+      en.y -= (player.y-en.y)*0.3;
+      damagePlayer();
+    }
+  });
+  enemies = enemies.filter(en=>en.hp>0);
+
+  // boss
+  if(boss){
+    if(!frozen){
+      const dx=player.x-boss.x, dy=player.y-boss.y;
+      const d=Math.hypot(dx,dy)||1;
+      boss.x += (dx/d)*boss.speed*60*dt;
+      boss.y += (dy/d)*boss.speed*60*dt;
+    }
+    if(boss.hitFlash>0) boss.hitFlash--;
+    const d2 = Math.hypot(player.x-boss.x, player.y-boss.y);
+    if(d2 < player.r+boss.r-10 && player.shieldTimer<=0){
+      damagePlayer();
+    }
+    if(boss.hp <= 0){
+      onBossDefeated();
+    }
+  } else if(!bossSpawned && enemies.length===0){
+    bossSpawned = true;
+    setTimeout(()=>spawnBoss(LEVELS[currentLevelIdx-1]), 600);
+  }
+
+  // projectiles
+  projectiles.forEach(p=>{
+    p.x += p.dx*p.speed*60*dt;
+    p.y += p.dy*p.speed*60*dt;
+    p.life--;
+    if(boss){
+      const d = Math.hypot(p.x-boss.x, p.y-boss.y);
+      if(d < boss.r+p.r){ boss.hp -= 12; boss.hitFlash=8; p.life=0; updateBossBar(); SoundEngine.sfx.bossHit(); }
+    }
+    enemies.forEach(en=>{
+      const d = Math.hypot(p.x-en.x, p.y-en.y);
+      if(d < en.r+p.r){ en.hp -= 5; en.hitFlash=8; p.life=0; if(en.hp<=0) SoundEngine.sfx.enemyDown(); else SoundEngine.sfx.hit(); }
+    });
+  });
+  projectiles = projectiles.filter(p=>p.life>0 && p.x>-20 && p.x<W+20 && p.y>-20 && p.y<H+20);
+}
+
+function damagePlayer(){
+  if(player.invuln > 0) return;
+  hearts -= 1;
+  player.invuln = 45;
+  updateHpBar();
+  SoundEngine.sfx.playerHurt();
+  if(hearts <= 0){
+    onGameOver();
+  }
+}
+
+function gameTick(){
+  if(player.invuln>0) player.invuln--;
+}
+
+const _origUpdate = update;
+update = function(dt){
+  _origUpdate(dt);
+  gameTick();
+};
+
+function onBossDefeated(){
+  levelActive = false;
+  cancelAnimationFrame(gameLoopId);
+  score += 100 + currentLevelIdx*20;
+  save.score = score;
+  if(currentLevelIdx > save.maxLevelCleared){
+    save.maxLevelCleared = currentLevelIdx;
+  }
+  persist();
+  launchConfetti(50);
+  SoundEngine.sfx.bossDown();
+
+  if(currentLevelIdx >= 10){
+    SoundEngine.stopMusic();
+    setTimeout(()=>SoundEngine.sfx.finalWin(), 500);
+    showScreen('finalwin-screen');
+    return;
+  }
+
+  SoundEngine.startMusic('menu');
+  setTimeout(()=>SoundEngine.sfx.levelWin(), 400);
+  document.getElementById('levelwin-title').textContent = 'Level ' + currentLevelIdx + ' Complete!';
+  document.getElementById('levelwin-desc').textContent =
+    'You defeated ' + LEVELS[currentLevelIdx-1].bossName + '! ⭐ Score: ' + score;
+  showScreen('levelwin-screen');
+}
+
+function onGameOver(){
+  levelActive = false;
+  cancelAnimationFrame(gameLoopId);
+  SoundEngine.stopMusic();
+  SoundEngine.sfx.gameOver();
+  showScreen('gameover-screen');
+}
+
+document.getElementById('next-level-btn').addEventListener('click', ()=>{
+  SoundEngine.sfx.click();
+  startLevel(currentLevelIdx+1);
+});
+document.getElementById('levelwin-menu-btn').addEventListener('click', ()=>{ SoundEngine.sfx.back(); goToMenu(); });
+document.getElementById('retry-btn').addEventListener('click', ()=>{ SoundEngine.sfx.click(); startLevel(currentLevelIdx); });
+document.getElementById('gameover-menu-btn').addEventListener('click', ()=>{ SoundEngine.sfx.back(); goToMenu(); });
+document.getElementById('finalwin-menu-btn').addEventListener('click', ()=>{ SoundEngine.sfx.back(); goToMenu(); });
+
+/* ---------------- Render ---------------- */
+function render(){
+  ctx.clearRect(0,0,W,H);
+
+  // ground grid effect
+  ctx.save();
+  ctx.strokeStyle = 'rgba(125,249,255,0.05)';
+  for(let gx=0; gx<W; gx+=40){
+    ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke();
+  }
+  for(let gy=0; gy<H; gy+=40){
+    ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke();
+  }
+  ctx.restore();
+
+  // enemies
+  enemies.forEach(en=>{
+    ctx.font = '32px sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    if(en.hitFlash>0){
+      ctx.save();
+      ctx.shadowColor = '#ff4f9a';
+      ctx.shadowBlur = 14;
+    }
+    ctx.fillText(en.emoji, en.x, en.y);
+    if(en.hitFlash>0) ctx.restore();
+  });
+
+  // boss
+  if(boss){
+    ctx.font = '64px sans-serif';
+    ctx.textAlign='center'; ctx.textBaseline='middle';
+    if(boss.hitFlash>0){
+      ctx.save(); ctx.shadowColor='#ff4f9a'; ctx.shadowBlur=20;
+    }
+    ctx.fillText(boss.emoji, boss.x, boss.y);
+    if(boss.hitFlash>0) ctx.restore();
+  }
+
+  // projectiles
+  projectiles.forEach(p=>{
+    ctx.beginPath();
+    ctx.fillStyle = '#ffd166';
+    ctx.shadowColor = '#ffd166'; ctx.shadowBlur=10;
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill();
+    ctx.shadowBlur=0;
+  });
+
+  // player
+  ctx.save();
+  if(player.invuln>0 && Math.floor(player.invuln/5)%2===0){
+    ctx.globalAlpha = 0.4;
+  }
+  if(player.shieldTimer>0){
+    ctx.beginPath();
+    ctx.strokeStyle='rgba(125,249,255,0.8)';
+    ctx.lineWidth=4;
+    ctx.shadowColor='#7df9ff'; ctx.shadowBlur=18;
+    ctx.arc(player.x, player.y, player.r+10, 0, Math.PI*2);
+    ctx.stroke();
+    ctx.shadowBlur=0;
+  }
+  if(player.attackFlash>0){
+    ctx.beginPath();
+    ctx.strokeStyle='rgba(255,209,102,0.8)';
+    ctx.lineWidth=3;
+    ctx.arc(player.x, player.y, 60, 0, Math.PI*2);
+    ctx.stroke();
+  }
+  ctx.font='34px sans-serif';
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText(getCostume().icon, player.x, player.y);
+  ctx.restore();
+}
+
+/* ---------------- expose for debug (optional) ---------------- */
+window.ThanuGames = { save, LEVELS };
+
+})();
+</script>
+
+</body>
+</html>
