@@ -34,10 +34,14 @@
     display:none;
     flex-direction:column;
     align-items:center;
-    justify-content:center;
-    overflow:hidden;
+    justify-content:flex-start;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding:24px 16px 56px;
+    -webkit-overflow-scrolling:touch;
   }
   .screen.active{ display:flex; }
+  #splash-screen{ justify-content:center; overflow:hidden; }
 
   /* ---------- shared starfield bg ---------- */
   .stars{
@@ -160,7 +164,7 @@
   }
 
   /* ---------- Main Menu ---------- */
-  #menu-screen{ z-index:2; text-align:center; }
+  #menu-screen{ z-index:2; text-align:center; justify-content:center; min-height:100%; }
   #menu-screen h1{
     font-size:2.2rem;
     color:var(--gold);
@@ -223,7 +227,7 @@
   }
 
   /* ---------- HUD / Game screen ---------- */
-  #game-screen{ z-index:2; }
+  #game-screen{ z-index:2; overflow:hidden; padding:0; justify-content:center; }
   #hud{
     position:absolute;
     top:10px; left:0; right:0;
@@ -565,16 +569,29 @@ const LEVELS = [
 ];
 
 /* ---------------- Save Data ---------------- */
+const DEFAULT_SAVE = { maxLevelCleared:0, costume:'classic', gadget:'shield', score:0 };
 let save = loadSave();
 function loadSave(){
   try{
     const raw = localStorage.getItem(STORAGE_KEY);
-    if(raw) return JSON.parse(raw);
+    if(raw){
+      const data = JSON.parse(raw);
+      const merged = Object.assign({}, DEFAULT_SAVE, data);
+      merged.maxLevelCleared = Math.max(0, Math.min(10, Number(merged.maxLevelCleared) || 0));
+      merged.score = Math.max(0, Number(merged.score) || 0);
+      if(!COSTUMES.some(c=>c.id===merged.costume)) merged.costume = 'classic';
+      if(!GADGETS.some(g=>g.id===merged.gadget)) merged.gadget = 'shield';
+      return merged;
+    }
   }catch(e){}
-  return { maxLevelCleared:0, costume:'classic', gadget:'shield', score:0 };
+  return Object.assign({}, DEFAULT_SAVE);
 }
 function persist(){
   try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(save)); }catch(e){}
+}
+function getNextLevel(){
+  const cleared = Number(save.maxLevelCleared) || 0;
+  return Math.min(Math.max(1, cleared + 1), 10);
 }
 
 /* ============================================================
@@ -589,48 +606,58 @@ const SoundEngine = (function(){
   let currentMusicMode = null;
 
   function ensureCtx(){
-    if(!actx){
-      actx = new (window.AudioContext || window.webkitAudioContext)();
-      masterGain = actx.createGain();
-      masterGain.gain.value = 0.55;
-      masterGain.connect(actx.destination);
+    try{
+      if(!actx){
+        actx = new (window.AudioContext || window.webkitAudioContext)();
+        masterGain = actx.createGain();
+        masterGain.gain.value = 0.55;
+        masterGain.connect(actx.destination);
+      }
+      if(actx.state === 'suspended') actx.resume();
+      return actx;
+    }catch(e){
+      return null;
     }
-    if(actx.state === 'suspended') actx.resume();
-    return actx;
   }
 
   function blip(freq, dur, type, vol, glideTo){
     if(muted) return;
-    const ctx = ensureCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type || 'sine';
-    osc.frequency.setValueAtTime(freq, ctx.currentTime);
-    if(glideTo){
-      osc.frequency.exponentialRampToValueAtTime(glideTo, ctx.currentTime + dur);
-    }
-    gain.gain.setValueAtTime(vol||0.3, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
-    osc.connect(gain);
-    gain.connect(masterGain);
-    osc.start();
-    osc.stop(ctx.currentTime + dur);
+    try{
+      const ctx = ensureCtx();
+      if(!ctx) return;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      if(glideTo){
+        osc.frequency.exponentialRampToValueAtTime(glideTo, ctx.currentTime + dur);
+      }
+      gain.gain.setValueAtTime(vol||0.3, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start();
+      osc.stop(ctx.currentTime + dur);
+    }catch(e){}
   }
 
   function noiseBurst(dur, vol){
     if(muted) return;
-    const ctx = ensureCtx();
-    const bufferSize = ctx.sampleRate * dur;
-    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-    const data = buffer.getChannelData(0);
-    for(let i=0;i<bufferSize;i++){ data[i] = (Math.random()*2-1) * (1 - i/bufferSize); }
-    const noise = ctx.createBufferSource();
-    noise.buffer = buffer;
-    const gain = ctx.createGain();
-    gain.gain.value = vol||0.25;
-    noise.connect(gain);
-    gain.connect(masterGain);
-    noise.start();
+    try{
+      const ctx = ensureCtx();
+      if(!ctx) return;
+      const bufferSize = ctx.sampleRate * dur;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for(let i=0;i<bufferSize;i++){ data[i] = (Math.random()*2-1) * (1 - i/bufferSize); }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+      const gain = ctx.createGain();
+      gain.gain.value = vol||0.25;
+      noise.connect(gain);
+      gain.connect(masterGain);
+      noise.start();
+    }catch(e){}
   }
 
   // ---- SFX library ----
@@ -785,7 +812,6 @@ function launchConfetti(count, colors){
    ============================================================ */
 setTimeout(()=>{
   showScreen('story-screen');
-  SoundEngine.startMusic('menu');
   startStory();
 }, 2600);
 
@@ -802,18 +828,26 @@ function typeLine(text){
   let i = 0;
   const speed = 28;
   function step(){
-    if(i < text.length){
-      el.textContent += text.charAt(i);
-      if(text.charAt(i) !== ' ') SoundEngine.sfx.typewriter();
-      i++;
-      setTimeout(step, speed);
-    } else {
+    try{
+      if(i < text.length){
+        el.textContent += text.charAt(i);
+        if(text.charAt(i) !== ' ') SoundEngine.sfx.typewriter();
+        i++;
+        setTimeout(step, speed);
+      } else {
+        storyTyping = false;
+      }
+    }catch(e){
       storyTyping = false;
     }
   }
   step();
 }
+function unlockAudio(){
+  SoundEngine.ensureCtx();
+}
 document.getElementById('next-line-btn').addEventListener('click', ()=>{
+  unlockAudio();
   if(storyTyping) return;
   SoundEngine.sfx.click();
   storyIdx++;
@@ -824,6 +858,7 @@ document.getElementById('next-line-btn').addEventListener('click', ()=>{
   }
 });
 document.getElementById('skip-story-btn').addEventListener('click', ()=>{
+  unlockAudio();
   SoundEngine.sfx.back();
   goToMenu();
 });
@@ -842,7 +877,7 @@ function renderMenuState(){
 }
 document.getElementById('play-btn').addEventListener('click', ()=>{
   SoundEngine.sfx.click();
-  startLevel(Math.min(save.maxLevelCleared+1, 10));
+  startLevel(getNextLevel());
 });
 document.getElementById('costume-btn').addEventListener('click', ()=>{
   SoundEngine.sfx.click();
@@ -861,7 +896,7 @@ document.getElementById('gadget-back-btn').addEventListener('click', ()=>{ Sound
 document.getElementById('reset-progress-btn').addEventListener('click', ()=>{
   SoundEngine.sfx.click();
   if(confirm('Reset all progress, costumes, and gadgets?')){
-    save = { maxLevelCleared:0, costume:'classic', gadget:'shield', score:0 };
+    save = Object.assign({}, DEFAULT_SAVE);
     persist();
     toast('Progress reset!');
   }
@@ -931,7 +966,7 @@ function resizeCanvas(){
 window.addEventListener('resize', resizeCanvas);
 
 let currentLevelIdx = 1;
-let player, enemies, projectiles, boss, score, hearts, keys, gadgetCooldownLeft, gadgetActiveTimer, gameLoopId, gamePaused;
+let player, enemies, projectiles, boss, score, hearts, keys = {}, gadgetCooldownLeft, gadgetActiveTimer, gameLoopId, gamePaused;
 let bossSpawned = false;
 let levelActive = false;
 
@@ -939,12 +974,14 @@ function getCostume(){ return COSTUMES.find(c=>c.id===save.costume) || COSTUMES[
 function getGadget(){ return GADGETS.find(g=>g.id===save.gadget) || GADGETS[0]; }
 
 function startLevel(levelNum){
+  levelNum = Math.max(1, Math.min(10, Number(levelNum) || 1));
   currentLevelIdx = levelNum;
   const lvl = LEVELS[levelNum-1];
+  if(!lvl) return;
   resizeCanvas();
   showScreen('game-screen');
 
-  player = { x:W/2, y:H/2, r:20, speed:3.2, dashTimer:0, shieldTimer:0, frozenEnemiesTimer:0 };
+  player = { x:W/2, y:H/2, r:20, speed:3.2, dashTimer:0, shieldTimer:0, frozenEnemiesTimer:0, invuln:0, attackFlash:0 };
   enemies = [];
   projectiles = [];
   boss = null;
@@ -1020,11 +1057,15 @@ function spawnBoss(lvl){
 
 /* ---------------- Input ---------------- */
 window.addEventListener('keydown', e=>{
+  if(!keys) keys = {};
   keys[e.key.toLowerCase()] = true;
   if(e.key===' '){ attack(); e.preventDefault(); }
   if(e.key.toLowerCase()==='g'){ useGadget(); }
 });
-window.addEventListener('keyup', e=>{ keys[e.key.toLowerCase()] = false; });
+window.addEventListener('keyup', e=>{
+  if(!keys) keys = {};
+  keys[e.key.toLowerCase()] = false;
+});
 
 document.getElementById('mc-attack').addEventListener('click', attack);
 document.getElementById('mc-gadget').addEventListener('click', useGadget);
