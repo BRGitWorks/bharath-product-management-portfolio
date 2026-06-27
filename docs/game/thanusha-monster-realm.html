@@ -41,12 +41,22 @@
     -webkit-overflow-scrolling:touch;
   }
   .screen.active{ display:flex; }
+  .screen-inner{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:760px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
   #splash-screen{ justify-content:center; overflow:hidden; }
 
   /* ---------- shared starfield bg ---------- */
   .stars{
     position:absolute; inset:0; z-index:0;
     background:radial-gradient(circle at 20% 30%, #1a1f40 0%, var(--dark) 60%);
+    pointer-events:none;
   }
   .star{
     position:absolute;
@@ -309,10 +319,24 @@
   .overlay-screen{
     z-index:30;
     text-align:center;
+    justify-content:center;
+  }
+  .overlay-screen .screen-inner{
+    position:relative;
+    z-index:2;
   }
   .overlay-screen .icon{ font-size:4.5rem; margin-bottom:10px; animation:floatArt 2.4s ease-in-out infinite; }
   .overlay-screen h2{ font-size:2rem; margin:0 0 8px; }
   .overlay-screen p{ color:#cfd3f0; max-width:420px; margin:0 auto 18px; }
+  .overlay-actions{
+    position:relative;
+    z-index:3;
+    display:flex;
+    gap:14px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin-top:6px;
+  }
 
   #toast{
     position:fixed;
@@ -331,7 +355,7 @@
 
   .confetti-piece{
     position:fixed; top:-12px; width:10px;height:14px;
-    z-index:100; pointer-events:none;
+    z-index:8; pointer-events:none;
     animation:fall linear forwards;
   }
   @keyframes fall{ to{ transform:translateY(110vh) rotate(720deg); opacity:0.3; } }
@@ -384,27 +408,31 @@
   <!-- ===================== INTRO STORY ===================== -->
   <div class="screen" id="story-screen">
     <div class="stars"></div>
-    <div id="story-art">🌍</div>
-    <div id="story-text"><span id="story-line"></span><span class="cursor"></span></div>
-    <div class="story-controls">
-      <button class="btn ghost" id="skip-story-btn">Skip ⏭️</button>
-      <button class="btn alt" id="next-line-btn">Continue ▶️</button>
+    <div class="screen-inner">
+      <div id="story-art">🌍</div>
+      <div id="story-text"><span id="story-line"></span><span class="cursor"></span></div>
+      <div class="story-controls">
+        <button class="btn ghost" id="skip-story-btn" type="button">Skip ⏭️</button>
+        <button class="btn alt" id="next-line-btn" type="button">Continue ▶️</button>
+      </div>
     </div>
   </div>
 
   <!-- ===================== MAIN MENU ===================== -->
   <div class="screen" id="menu-screen">
     <div class="stars"></div>
-    <h1>🦸‍♀️ Thanusha & The Monster Realm</h1>
-    <div class="sub">10 Levels • Save The World</div>
-    <div id="menu-buttons">
-      <button class="btn" id="play-btn">▶️ Play</button>
-      <button class="btn alt" id="costume-btn">👗 Costumes</button>
-      <button class="btn alt" id="gadget-btn">🎒 Gadgets</button>
-      <button class="btn ghost" id="howto-btn">❓ How To Play</button>
-      <button class="btn ghost" id="reset-progress-btn">♻️ Reset Progress</button>
+    <div class="screen-inner">
+      <h1>🦸‍♀️ Thanusha & The Monster Realm</h1>
+      <div class="sub">10 Levels • Save The World</div>
+      <div id="menu-buttons">
+        <button class="btn" id="play-btn" type="button">▶️ Play</button>
+        <button class="btn alt" id="costume-btn" type="button">👗 Costumes</button>
+        <button class="btn alt" id="gadget-btn" type="button">🎒 Gadgets</button>
+        <button class="btn ghost" id="howto-btn" type="button">❓ How To Play</button>
+        <button class="btn ghost" id="reset-progress-btn" type="button">♻️ Reset Progress</button>
+      </div>
+      <footer class="copyright">© ThanuGames — Thanusha & The Monster Realm</footer>
     </div>
-    <footer class="copyright">© ThanuGames — Thanusha & The Monster Realm</footer>
   </div>
 
   <!-- ===================== HOW TO PLAY ===================== -->
@@ -476,37 +504,43 @@
   <!-- ===================== LEVEL WIN ===================== -->
   <div class="screen overlay-screen" id="levelwin-screen">
     <div class="stars"></div>
-    <div class="icon">🎉</div>
-    <h2 id="levelwin-title">Level Complete!</h2>
-    <p id="levelwin-desc">You defeated the boss!</p>
-    <div style="display:flex; gap:14px;">
-      <button class="btn" id="next-level-btn">▶️ Next Level</button>
-      <button class="btn ghost" id="levelwin-menu-btn">🏠 Menu</button>
+    <div class="screen-inner">
+      <div class="icon">🎉</div>
+      <h2 id="levelwin-title">Level Complete!</h2>
+      <p id="levelwin-desc">You defeated the boss!</p>
+      <div class="overlay-actions">
+        <button class="btn" id="next-level-btn" type="button">▶️ Next Level</button>
+        <button class="btn ghost" id="levelwin-menu-btn" type="button">🏠 Menu</button>
+      </div>
     </div>
   </div>
 
   <!-- ===================== GAME OVER ===================== -->
   <div class="screen overlay-screen" id="gameover-screen">
     <div class="stars"></div>
-    <div class="icon">💫</div>
-    <h2>Don't Give Up!</h2>
-    <p>The monsters got the better of you this time. Try again, hero!</p>
-    <div style="display:flex; gap:14px;">
-      <button class="btn" id="retry-btn">🔄 Retry Level</button>
-      <button class="btn ghost" id="gameover-menu-btn">🏠 Menu</button>
+    <div class="screen-inner">
+      <div class="icon">💫</div>
+      <h2>Don't Give Up!</h2>
+      <p>The monsters got the better of you this time. Try again, hero!</p>
+      <div class="overlay-actions">
+        <button class="btn" id="retry-btn" type="button">🔄 Retry Level</button>
+        <button class="btn ghost" id="gameover-menu-btn" type="button">🏠 Menu</button>
+      </div>
     </div>
   </div>
 
   <!-- ===================== FINAL VICTORY ===================== -->
   <div class="screen overlay-screen" id="finalwin-screen">
     <div class="stars"></div>
-    <div class="icon">🌍✨</div>
-    <h2>The World Is Saved!</h2>
-    <p id="final-text">Thanusha has defeated the Shadow King and brought peace back to the world. All heroes, big and small, will remember her courage forever!</p>
-    <div style="display:flex; gap:14px;">
-      <button class="btn" id="finalwin-menu-btn">🏠 Menu</button>
+    <div class="screen-inner">
+      <div class="icon">🌍✨</div>
+      <h2>The World Is Saved!</h2>
+      <p id="final-text">Thanusha has defeated the Shadow King and brought peace back to the world. All heroes, big and small, will remember her courage forever!</p>
+      <div class="overlay-actions">
+        <button class="btn" id="finalwin-menu-btn" type="button">🏠 Menu</button>
+      </div>
+      <footer class="copyright">© ThanuGames — Thanusha & The Monster Realm</footer>
     </div>
-    <footer class="copyright">© ThanuGames — Thanusha & The Monster Realm</footer>
   </div>
 
   <div id="toast"></div>
@@ -701,17 +735,20 @@ const SoundEngine = (function(){
   function playMusicNote(freq, dur, vol, type){
     if(muted) return;
     const ctx = ensureCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = type || 'sine';
-    osc.frequency.value = freq;
-    gain.gain.setValueAtTime(0.0001, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-    osc.connect(gain);
-    gain.connect(masterGain);
-    osc.start();
-    osc.stop(ctx.currentTime + dur + 0.05);
+    if(!ctx) return;
+    try{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = type || 'sine';
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0.0001, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(vol, ctx.currentTime + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start();
+      osc.stop(ctx.currentTime + dur + 0.05);
+    }catch(e){}
   }
 
   function startMusic(mode){
@@ -764,6 +801,10 @@ const screens = {};
 document.querySelectorAll('.screen').forEach(s => screens[s.id] = s);
 function showScreen(id){
   Object.values(screens).forEach(s => s.classList.remove('active'));
+  if(!screens[id]){
+    console.error('Missing screen:', id);
+    return;
+  }
   screens[id].classList.add('active');
 }
 
@@ -795,6 +836,7 @@ function toast(msg){
 function launchConfetti(count, colors){
   count = count || 40;
   colors = colors || ['#ffd166','#7df9ff','#ff4f9a','#06d6a0'];
+  const mount = document.getElementById('app') || document.body;
   for(let i=0;i<count;i++){
     const piece = document.createElement('div');
     piece.className = 'confetti-piece';
@@ -802,7 +844,7 @@ function launchConfetti(count, colors){
     piece.style.background = colors[Math.floor(Math.random()*colors.length)];
     piece.style.animationDuration = (1.8+Math.random()*1.8)+'s';
     piece.style.borderRadius = Math.random()>0.5 ? '50%':'2px';
-    document.body.appendChild(piece);
+    mount.appendChild(piece);
     setTimeout(()=>piece.remove(), 4000);
   }
 }
@@ -817,11 +859,25 @@ setTimeout(()=>{
 
 let storyIdx = 0;
 let storyTyping = false;
+let storyTypeTimer = null;
 function startStory(){
   storyIdx = 0;
+  updateStoryButton();
   typeLine(STORY_LINES[0]);
 }
+function clearStoryTyping(){
+  if(storyTypeTimer){
+    clearTimeout(storyTypeTimer);
+    storyTypeTimer = null;
+  }
+  storyTyping = false;
+}
+function updateStoryButton(){
+  const btn = document.getElementById('next-line-btn');
+  btn.textContent = storyIdx >= STORY_LINES.length - 1 ? 'Start Game ▶️' : 'Continue ▶️';
+}
 function typeLine(text){
+  clearStoryTyping();
   storyTyping = true;
   const el = document.getElementById('story-line');
   el.textContent = '';
@@ -833,22 +889,28 @@ function typeLine(text){
         el.textContent += text.charAt(i);
         if(text.charAt(i) !== ' ') SoundEngine.sfx.typewriter();
         i++;
-        setTimeout(step, speed);
+        storyTypeTimer = setTimeout(step, speed);
       } else {
-        storyTyping = false;
+        clearStoryTyping();
+        updateStoryButton();
       }
     }catch(e){
-      storyTyping = false;
+      clearStoryTyping();
     }
   }
   step();
 }
-function unlockAudio(){
-  SoundEngine.ensureCtx();
+function finishCurrentStoryLine(){
+  clearStoryTyping();
+  document.getElementById('story-line').textContent = STORY_LINES[storyIdx];
+  updateStoryButton();
 }
-document.getElementById('next-line-btn').addEventListener('click', ()=>{
+function advanceStory(){
   unlockAudio();
-  if(storyTyping) return;
+  if(storyTyping){
+    finishCurrentStoryLine();
+    return;
+  }
   SoundEngine.sfx.click();
   storyIdx++;
   if(storyIdx >= STORY_LINES.length){
@@ -856,16 +918,22 @@ document.getElementById('next-line-btn').addEventListener('click', ()=>{
   } else {
     typeLine(STORY_LINES[storyIdx]);
   }
-});
+}
+function unlockAudio(){
+  SoundEngine.ensureCtx();
+}
+document.getElementById('next-line-btn').addEventListener('click', advanceStory);
 document.getElementById('skip-story-btn').addEventListener('click', ()=>{
+  clearStoryTyping();
   unlockAudio();
   SoundEngine.sfx.back();
   goToMenu();
 });
 
 function goToMenu(){
+  clearStoryTyping();
   showScreen('menu-screen');
-  SoundEngine.startMusic('menu');
+  try{ SoundEngine.startMusic('menu'); }catch(e){}
   renderMenuState();
 }
 
@@ -1278,22 +1346,23 @@ function onBossDefeated(){
     save.maxLevelCleared = currentLevelIdx;
   }
   persist();
-  launchConfetti(50);
-  SoundEngine.sfx.bossDown();
-
   if(currentLevelIdx >= 10){
+    showScreen('finalwin-screen');
+    launchConfetti(50);
+    SoundEngine.sfx.bossDown();
     SoundEngine.stopMusic();
     setTimeout(()=>SoundEngine.sfx.finalWin(), 500);
-    showScreen('finalwin-screen');
     return;
   }
 
-  SoundEngine.startMusic('menu');
-  setTimeout(()=>SoundEngine.sfx.levelWin(), 400);
   document.getElementById('levelwin-title').textContent = 'Level ' + currentLevelIdx + ' Complete!';
   document.getElementById('levelwin-desc').textContent =
     'You defeated ' + LEVELS[currentLevelIdx-1].bossName + '! ⭐ Score: ' + score;
   showScreen('levelwin-screen');
+  launchConfetti(50);
+  SoundEngine.sfx.bossDown();
+  SoundEngine.startMusic('menu');
+  setTimeout(()=>SoundEngine.sfx.levelWin(), 400);
 }
 
 function onGameOver(){
